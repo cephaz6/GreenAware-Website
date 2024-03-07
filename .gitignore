@@ -1,0 +1,33 @@
+# .gitignore
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+
+# Django
+*.log
+*.pot
+*.pyc
+local_settings.py
+db.sqlite3
+
+# Virtual Environment
+venv/
+env/
+web/
+
+# Media files
+media/
+
+# IDE-specific files
+.idea/
+.vscode/
+
+# Miscellaneous
+*.pyc
+*.pyo
+*.pyd
+.DS_Store

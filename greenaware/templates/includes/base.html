@@ -1,0 +1,69 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="keywords" content="{{ site_info.title }} Website">
+	<meta name="description" content="{{ site_info.title }} Website">
+    <meta property="og:site_name" content="{{ site_info.title }}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ site_info.title }} | Climate and Weather Api ">
+	<meta name='og:image' content="{% static 'assets/images/assets/ogg.png' %}">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="theme-color" content="#1A4137">
+	<meta name="msapplication-navbutton-color" content="#1A4137">
+	<meta name="apple-mobile-web-app-status-bar-style" content="#1A4137">
+	<title>{{ site_info.title }}</title>
+	<link rel="icon" type="image/png" sizes="56x56" href="{% static 'assets/images/fav-icon/icon.png' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap.min.css' %}" media="all">
+	<link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.min.css' %}" media="all">
+	<link rel="stylesheet" type="text/css" href="{% static 'assets/css/responsive.css' %}" media="all">
+</head>
+
+<body>
+	<div class="main-page-wrapper">
+		{% include 'components/preloader.html' %}
+		{% include 'components/header.html' %}
+		
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+		
+
+		
+		
+		{% include 'components/footer.html' %}
+		{% include 'components/settings/auth.html' %}
+
+		
+
+
+		<button class="scroll-top">
+			<i class="bi bi-arrow-up-short"></i>
+		</button>
+<!-- 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/brands.min.css" integrity="sha512-8RxmFOVaKQe/xtg6lbscU9DU0IRhURWEuiI0tXevv+lXbAHfkpamD4VKFQRto9WgfOJDwOZ74c/s9Yesv3VvIQ==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+
+		<script src="{% static 'assets/vendor/jquery.min.js' %}"></script>
+		<!-- Bootstrap JS -->
+		<script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+		<!-- WOW js -->
+		<script src="{% static 'assets/vendor/wow/wow.min.js' %}"></script>
+		<!-- Slick Slider -->
+		<script src="{% static 'assets/vendor/slick/slick.min.js' %}"></script>
+		<!-- Fancybox -->
+		<script src="{% static 'assets/vendor/fancybox/dist/jquery.fancybox.min.js' %}"></script>
+		<!-- Lazy -->
+		<script src="{% static 'assets/vendor/jquery.lazy.min.js' %}"></script>
+		<!-- js Counter -->
+		<script src="{% static 'assets/vendor/jquery.counterup.min.js' %}"></script>
+		<script src="{% static 'assets/vendor/jquery.waypoints.min.js' %}"></script>
+		
+		<!-- validator js -->
+		<script src="{% static 'assets/vendor/validator.js' %}"></script>
+		<script src="{% static 'assets/js/theme.js' %}"></script>
+</body>
+</html>
