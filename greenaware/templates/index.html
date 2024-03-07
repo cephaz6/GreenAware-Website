@@ -1,0 +1,222 @@
+{% extends 'includes/base.html' %} {% block content %} {% load static %}
+
+<div class="hero-banner-two light-bg pt-200 pb-85 position-relative">
+  <div class="container position-relative">
+    <div class="row">
+      <div class="col-lg-10 m-auto">
+        <h1
+          style="font-family: 'ClashDisplay'"
+          class="hero-heading text-white text-center fw-bold wow fadeInUp mt-50 mb-30"
+        >
+          {{ site_info.title }}
+          <br />
+          <h3 class="text-white text-center">
+            Weather forecasts, nowcasts and <br />
+            history in a fast and elegant way
+          </h3>
+        </h1>
+
+        <form
+          action="#"
+          class="m-auto position-relative wow fadeInUp"
+          data-wow-delay="0.2s"
+        >
+          <input type="email" placeholder="Your email address..." />
+          <button class="btn-four">Register</button>
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-10 m-auto">
+        <div class="partner-logo-one pt-80 md-p-70">
+          <p class="fw-800 text-white text-center mb-40">
+            <span class="text-white fw-500">Join 110+</span> Companies and
+            Indiviuals using our API
+          </p>
+          <div class="partner-slider-one">
+            <div class="item">
+              <div
+                class="logo d-flex align-items-center justify-content-center"
+              >
+                <img
+                  style="filter: grayscale(0%) brightness(800%)"
+                  src="{% static 'assets/images/logo/media_03.png' %}"
+                  alt=""
+                />
+              </div>
+            </div>
+            <div class="item">
+              <div
+                class="logo d-flex align-items-center justify-content-center"
+              >
+                <img
+                  style="filter: grayscale(0%) brightness(800%)"
+                  src="{% static 'assets/images/logo/partner1.png' %}"
+                  alt=""
+                />
+              </div>
+            </div>
+            <div class="item">
+              <div
+                class="logo d-flex align-items-center justify-content-center"
+              >
+                <img
+                  style="filter: grayscale(0%) brightness(800%)"
+                  src="{% static 'assets/images/logo/partner3.jpg' %}"
+                  alt=""
+                />
+              </div>
+            </div>
+            <div class="item">
+              <div
+                class="logo d-flex align-items-center justify-content-center"
+              >
+                <img
+                  style="filter: grayscale(0%) brightness(800%)"
+                  src="{% static 'assets/images/logo/media_01.png' %}"
+                  alt=""
+                />
+              </div>
+            </div>
+            <div class="item">
+              <div
+                class="logo d-flex align-items-center justify-content-center"
+              >
+                <img
+                  style="filter: grayscale(0%) brightness(800%)"
+                  src="{% static 'assets/images/logo/media_02.png' %}"
+                  alt=""
+                />
+              </div>
+            </div>
+            <div class="item">
+              <div
+                class="logo d-flex align-items-center justify-content-center"
+              >
+                <img
+                  style="filter: grayscale(0%) brightness(800%)"
+                  src="{% static 'assets/images/logo/media_04.png' %}"
+                  alt=""
+                />
+              </div>
+            </div>
+            <div class="item">
+              <div
+                class="logo d-flex align-items-center justify-content-center"
+              >
+                <img
+                  style="filter: grayscale(0%) brightness(800%)"
+                  src="{% static 'assets/images/logo/media_05.png' %}"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.partner-logo-one -->
+      </div>
+    </div>
+  </div>
+  <img
+    src="{% static 'assets/images/lazy.svg' %}"
+    data-src="{% static 'assets/images/shape/shape_05.svg' %}"
+    alt=""
+    class="lazy-img shapes shape_01"
+  />
+  <img
+    src="{% static 'assets/images/lazy.svg' %}"
+    data-src="{% static 'assets/images/shape/shape_06.svg' %}"
+    alt=""
+    class="lazy-img shapes shape_02"
+  />
+  <img
+    src="{% static 'assets/images/lazy.svg' %}"
+    data-src="{% static 'assets/images/assets/screen_02.png' %}"
+    alt=""
+    class="lazy-img shapes shape_03"
+  />
+  <img
+    src="{% static 'assets/images/lazy.svg' %}"
+    data-src="{% static 'assets/images/assets/screen_03.png' %}"
+    alt=""
+    class="lazy-img shapes shape_04"
+  />
+</div>
+
+<div class="text-feature-two position-relative pt-110 lg-pt-30 pb-30 lg-pb-30">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-xl-6 col-lg-7">
+        <div class="title-one">
+          <h2 class="text-white">One Call API 1.0.1</h2>
+          <p class="m0 text-md text-white md-pt-10">
+            Choose the subscription plan "One Call by Call" and get access to
+            the various data for any coordinates with One Call API 1.0.1 --
+            1,000 API calls per day for free! Pay as you call.
+          </p>
+          <img
+            class="m-auto"
+            style="filter: sepia(200%); width: 500px"
+            src="{% static 'assets/images/custom/one_call_api.png' %}"
+            alt=""
+          />
+        </div>
+        <!-- /.title-one -->
+      </div>
+      <div class="col-lg-5 ms-auto">
+        <table class="fw-300 table-striped text-white">
+          <thead>
+            <tr>
+              <th scope="col">Included data</th>
+              <th scope="col">Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Current</b> weather</td>
+              <td>Now</td>
+            </tr>
+            <tr>
+              <td><b>Minute</b> forecast</td>
+              <td>Next hour</td>
+            </tr>
+            <tr>
+              <td><b>Hourly</b> forecast</td>
+              <td>Next 48 hours</td>
+            </tr>
+            <tr>
+              <td><b>Daily</b> forecast</td>
+              <td>Next 8 days</td>
+            </tr>
+            <tr>
+              <td><b>Weather data</b> by any timestamp</td>
+              <td>40+ years back - 4 days ahead forecast</td>
+            </tr>
+            <tr>
+              <td>National weather alerts</td>
+              <td>All available data</td>
+            </tr>
+            <tr>
+              <td><b>Daily aggregation</b></td>
+              <td>40+ years back - 1,5 years ahead forecast</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <img
+    src="{% static 'assets/images/lazy.svg' %}"
+    data-src="{% static 'assets/images/shape/shape_07.svg' %}"
+    alt=""
+    class="lazy-img shapes shape_01"
+  />
+  <img
+    src="{% static 'assets/images/lazy.svg' %}"
+    data-src="{% static 'assets/images/shape/shape_08.svg' %}"
+    alt=""
+    class="lazy-img shapes shape_02"
+  />
+</div>
+
+{% include 'components/faq.html' %} {% endblock %}

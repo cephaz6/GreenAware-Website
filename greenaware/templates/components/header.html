@@ -1,0 +1,167 @@
+{% load static %}
+
+<header class="theme-main-menu menu-overlay menu-style-two sticky-menu">
+  <div class="gap-fix info-row">
+    <div class="d-md-flex justify-content-between">
+      <div class="greetings text-center">
+        <span class="opacity-50">Hello!!</span>
+        <span class="fw-800">Welcome to {{ site_info.title }}</span>
+      </div>
+      <ul class="style-none d-none d-md-flex contact-info">
+        <li class="d-flex align-items-center">
+          <i class="fa fa-envelop"></i>
+          <a href="mailto:{{ site_info.contact.email }}" class="fw-800">
+            {{ site_info.contact.email }}
+          </a>
+        </li>
+        <li class="d-flex align-items-center">
+          <a href="tel:{{ site_info.contact.phone}}" class="fw-800">
+            {{ site_info.contact.phone}}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="inner-content gap-fix">
+    <div class="top-header position-relative">
+      <div class="d-flex align-items-center">
+        <div class="logo order-lg-0">
+          <a href="/" class="d-flex align-items-center">
+            <img src="{% static 'assets/images/fav-icon/icon.png' %}" alt="" />
+            <span class="text-md fw-600 text-default">
+              {{ site_info.title}}
+            </span>
+          </a>
+        </div>
+        <!-- logo -->
+        <div class="right-widget order-lg-3 ms-auto">
+          <ul class="d-flex align-items-center style-none">
+            <li class="d-flex align-items-center login-btn-one me-3 me-md-0">
+              <img
+                src="{% static 'assets/images/lazy.svg' %}"
+                data-src="{% static 'assets/images/icon/icon_16.svg' %}"
+                alt=""
+                class="lazy-img icon me-2"
+              />
+              <a
+                href="#"
+                data-bs-toggle="modal"
+                data-bs-target="#loginModal"
+                class="fw-800"
+                >Login</a
+              >
+            </li>
+            <li class="d-none d-md-inline-block ms-3 ms-lg-5 me-3 me-lg-0">
+              <a
+                href="#"
+                data-bs-toggle="modal"
+                data-bs-target="#loginModal"
+                class="signup-btn-one icon-link"
+              >
+                <span>Signup</span>
+                <div
+                  class="icon rounded-circle d-flex align-items-center justify-content-center"
+                >
+                  <i class="bi bi-arrow-right"></i>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!--/.right-widget-->
+        <nav class="navbar navbar-expand-lg p0 ms-lg-5 order-lg-2">
+          <button
+            class="navbar-toggler d-block d-lg-none"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav align-items-lg-center">
+              <li class="d-block d-lg-none">
+                <div class="logo">
+                  <a href="/" class="d-block"
+                    ><img
+                      src="{% static 'assets/images/logo/logo_02.svg' %}"
+                      alt=""
+                  /></a>
+                </div>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="guide" role="button">Guide </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="api" role="button">API </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="dashboard" role="button">
+                  Dashboard
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="marketplace" role="button">
+                  Marketplace
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="pricing" role="button"> Pricing </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="business" role="button">
+                  For Business
+                </a>
+              </li>
+
+              <li class="d-md-none ps-2 pe-2">
+                <a
+                  href="#"
+                  data-bs-toggle="modal"
+                  data-bs-target="#loginModal"
+                  class="signup-btn-one icon-link w-100 mt-20"
+                >
+                  <span class="flex-fill text-center">Signup</span>
+                  <div
+                    class="icon rounded-circle d-flex align-items-center justify-content-center"
+                  >
+                    <i class="bi bi-arrow-right"></i>
+                  </div>
+                </a>
+                <ul class="style-none contact-info m0 pt-30">
+                  <li class="d-flex align-items-center p0 mt-15">
+                    <img
+                      src="{% static 'assets/images/lazy.svg' %}"
+                      data-src="{% static 'assets/images/icon/icon_14.svg' %}"
+                      alt=""
+                      class="lazy-img icon me-2"
+                    />
+                    <a href="mailto:babuninc@company.com" class="fw-800"
+                      >babuninc@company.com</a
+                    >
+                  </li>
+                  <li class="d-flex align-items-center p0 mt-15">
+                    <img
+                      src="{% static 'assets/images/lazy.svg' %}"
+                      data-src="{% static 'assets/images/icon/icon_15.svg' %}"
+                      alt=""
+                      class="lazy-img icon me-2"
+                    />
+                    <a href="tel:+757 699-4478" class="fw-800">+757 699-4478</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <!--/.top-header-->
+  </div>
+  <!-- /.inner-content -->
+</header>
