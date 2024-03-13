@@ -8,5 +8,8 @@ def index_page(request):
         site_info = json.load(json_file)
     return render(request, "index.html", {'site_info': site_info})
 
+def contact_page(request):
+    return render(request, "contact-us.html")
+
 # def custom_404(request, exception=None):
 #     return render(request, '404.html', status=404)
