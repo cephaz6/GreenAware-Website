@@ -1,0 +1,189 @@
+{% extends 'includes/base.html' %} {% block content %} {% load static %}
+<div style="margin-top: 150px" class="container">
+  <div class="col-lg-10 col-sm-12 m-auto">
+    <div class="card m-5">
+      <div class="user-data-form modal-content mt-5">
+        <div class="form-wrapper m-auto">
+          <div class="tab-content mt-30">
+            <div class="tab-pane show active" role="tabpanel" id="fc1">
+              <div class="text-center">
+                <h2>Hi, Welcome to {{ site_info.title }}</h2>
+                <p>Already have an account? <a href="/login">Login Now</a></p>
+              </div>
+              <form id="signupForm" action="/register/" method="POST">
+                {% csrf_token %}
+                <div class="row">
+                  <div class="col-12 col-lg-6">
+                    <div class="input-group-meta position-relative mb-25">
+                      <label>First Name*</label>
+                      <input
+                        required
+                        type="text"
+                        name="first_name"
+                        placeholder="Chris"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-12 col-lg-6">
+                    <div class="input-group-meta position-relative mb-25">
+                      <label>Last Name*</label>
+                      <input
+                        required
+                        type="text"
+                        name="last_name"
+                        placeholder="Emetoh"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="input-group-meta position-relative mb-25">
+                      <label>Email*</label>
+                      <input
+                        type="email"
+                        name="email_address"
+                        placeholder="chris@gmail.com"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-lg-6">
+                    <div class="input-group-meta position-relative mb-20">
+                      <label>Password*</label>
+                      <input
+                        type="password"
+                        placeholder="Enter Password"
+                        class="pass_log_id"
+                      />
+                      <span class="placeholder_icon"
+                        ><span class="passVicon"
+                          ><img
+                            src="{% static 'assets/images/icon/icon_13.svg' %}"
+                            alt="" /></span
+                      ></span>
+                    </div>
+                  </div>
+                  <div class="col-12 col-lg-6">
+                    <div class="input-group-meta position-relative mb-20">
+                      <label>Retype Password*</label>
+                      <input
+                        type="password"
+                        placeholder="Retype Password"
+                        class="pass_log_id"
+                      />
+                      <span class="placeholder_icon"
+                        ><span class="passVicon"
+                          ><img
+                            src="{% static 'assets/images/icon/icon_13.svg' %}"
+                            alt="" /></span
+                      ></span>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div
+                      class="agreement-checkbox d-flex justify-content-between align-items-center"
+                    >
+                      <div>
+                        <input type="checkbox" id="remember" />
+                        <label for="remember">Keep me logged in</label>
+                      </div>
+                      <a href="#">Forget Password?</a>
+                    </div>
+                    <!-- /.agreement-checkbox -->
+                  </div>
+                  <div class="col-12">
+                    <button class="btn-four w-100 tran3s d-block mt-20">
+                      Login
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!-- /.tab-pane -->
+            <div class="tab-pane" role="tabpanel" id="fc2">
+              <div class="text-center mb-20">
+                <h2>Register</h2>
+                <p>Already have an account? <a href="#">Login</a></p>
+              </div>
+              <form id="signupForm" action="/register/" method="POST">
+                {% csrf_token %}
+                <div class="row">
+                  <div class="col-12">
+                    <div class="input-group-meta position-relative mb-25">
+                      <label>First Name*</label>
+                      <input
+                        type="text"
+                        name="first_name"
+                        placeholder="Chris"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="input-group-meta position-relative mb-25">
+                      <label>Last Name*</label>
+                      <input
+                        type="text"
+                        name="last_name"
+                        placeholder="Emetor"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="input-group-meta position-relative mb-25">
+                      <label>Email*</label>
+                      <input type="email" placeholder="chris@gmail.com" />
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="input-group-meta position-relative mb-20">
+                      <label>Password*</label>
+                      <input
+                        type="password"
+                        placeholder="Enter Password"
+                        class="pass_log_id"
+                      />
+                      <span class="placeholder_icon"
+                        ><span class="passVicon"
+                          ><img
+                            src="{% static 'assets/images/icon/icon_13.svg' %}"
+                            alt="" /></span
+                      ></span>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div
+                      class="agreement-checkbox d-flex justify-content-between align-items-center"
+                    >
+                      <div>
+                        <input type="checkbox" id="remember2" />
+                        <label for="remember2"
+                          >By hitting the "Register" button, you agree to the
+                          <a href="#">Terms conditions</a> &
+                          <a href="#">Privacy Policy</a></label
+                        >
+                      </div>
+                    </div>
+                    <!-- /.agreement-checkbox -->
+                  </div>
+                  <div class="col-12">
+                    <button class="btn-four w-100 tran3s d-block mt-20">
+                      Sign up
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!-- /.tab-pane -->
+          </div>
+
+          <div class="d-flex align-items-center mt-30 mb-10">
+            <div class="line"></div>
+            <span class="pe-3 ps-3 fs-6">GreenAware</span>
+            <div class="line"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

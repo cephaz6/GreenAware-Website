@@ -14,7 +14,7 @@
 }
 body {
   font-family: "Satoshi";
-  font-weight: normal;
+  font-weight: 400;
   font-size: 20px;
   position: relative;
   color: rgba(0, 0, 0, 0.7);
@@ -2216,7 +2216,7 @@ iframe {
 }
 .theme-main-menu .nav-item .nav-link {
   font-family: "Satoshi";
-  font-weight: 500;
+  font-weight: 300;
   font-size: 20px;
   line-height: initial;
   color: #000;
