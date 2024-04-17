@@ -38,7 +38,8 @@
                 <h2>Hi, Welcome Back!</h2>
                 <p>Still don't have an account? <a href="#">Sign up</a></p>
               </div>
-              <form action="#">
+              <form id="signupForm" action="/login/" method="POST">
+                {% csrf_token %}
                 <div class="row">
                   <div class="col-12">
                     <div class="input-group-meta position-relative mb-25">
@@ -88,12 +89,27 @@
                 <h2>Register</h2>
                 <p>Already have an account? <a href="#">Login</a></p>
               </div>
-              <form action="#">
+              <form id="signupForm" action="/register/" method="POST">
+                {% csrf_token %}
                 <div class="row">
                   <div class="col-12">
                     <div class="input-group-meta position-relative mb-25">
-                      <label>Name*</label>
-                      <input type="text" placeholder="Chris Emetor" />
+                      <label>First Name*</label>
+                      <input
+                        type="text"
+                        name="first_name"
+                        placeholder="Chris"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="input-group-meta position-relative mb-25">
+                      <label>Last Name*</label>
+                      <input
+                        type="text"
+                        name="last_name"
+                        placeholder="Emetor"
+                      />
                     </div>
                   </div>
                   <div class="col-12">

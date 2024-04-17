@@ -97,6 +97,12 @@ hr {
 .font-magnita {
   font-family: "Magnita";
 }
+
+.font-satoshi {
+  font-family: "Satoshi";
+  font-weight: normal;
+}
+
 .light-bg-page-wrapper {
   background: #edf8eb;
 }

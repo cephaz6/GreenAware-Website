@@ -7,7 +7,6 @@ User = get_user_model()
 class Users(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     # user_id = models.CharField(max_length=50, unique=True)
-
     user_role = models.CharField(max_length=20, default='user')
     api_key = models.CharField(max_length=100, blank=True, null=True)
     subscription_package = models.CharField(max_length=100, blank=True, null=True)
