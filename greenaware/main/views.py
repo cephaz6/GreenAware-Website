@@ -5,6 +5,8 @@ from django.views.decorators.csrf import csrf_exempt
 #import from other files
 from .controllers.auth_controller import *
 
+
+#Define the SiteInformation File
 with open('main/data/siteInformation.json') as json_file:
     site_info = json.load(json_file)
 
@@ -23,11 +25,16 @@ def login_page(request):
 
 
 #----------- OTHER PAGES
+def about(request):
+    return render(request, "company/about-us.html", {'site_info': site_info})
+
 def privacy_policy(request):
     return render(request, "company/privacy-policy.html", {'site_info': site_info})
 
 def terms(request):
     return render(request, "company/terms-and-conditions.html", {'site_info': site_info})
+
+
 
 #Controllers
 @csrf_exempt

@@ -12,6 +12,7 @@ urlpatterns = [
     #OtherPages
     path('privacy-policy/', views.privacy_policy, name='privacy_policy'),
     path('terms-and-conditions/', views.terms, name='terms'),
+    path('about-us/', views.about),
 
 
     #Authentications
