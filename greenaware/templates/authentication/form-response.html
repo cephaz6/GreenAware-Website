@@ -1,14 +1,18 @@
 {% csrf_token %} {% if messages %}
+<style>
+  .error {
+    color: red;
+  }
+  .success {
+    color: green;
+  }
+</style>
+
 <ul class="messages text-center">
   {% for message in messages %}
   <li
     id="error"
-    style="
-      color: red;
-      font-size: 12px;
-      font-weight: bolder;
-      list-style-type: none;
-    "
+    style="font-size: 12px; font-weight: bolder; list-style-type: none"
     {%
     if
     message.tags

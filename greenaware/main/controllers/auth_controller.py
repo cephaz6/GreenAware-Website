@@ -1,6 +1,7 @@
 import json
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model, authenticate, login
+from django.contrib.auth.password_validation import validate_password
 from django.contrib import messages
 from django.core.exceptions import ValidationError
 from django.http import JsonResponse, HttpResponseBadRequest, HttpResponseServerError
@@ -30,6 +31,13 @@ def register_user(request):
 
         if not email or not first_name or not last_name or not password:
             messages.error(request, 'Missing required fields.')
+            return redirect("/register")
+
+        # Validate password strength
+        try:
+            validate_password(password)
+        except ValidationError as e:
+            messages.error(request, f'{", ".join(e)}')
             return redirect("/register")
 
         if CustomUser.objects.filter(email=email).exists():

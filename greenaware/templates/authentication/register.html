@@ -124,6 +124,7 @@
                   </div>
                   <div class="col-12">
                     <button
+                      id="submit"
                       type="submit"
                       class="btn-four w-100 tran3s d-block mt-20"
                     >
@@ -155,6 +156,13 @@
 
       if (password !== retypePassword) {
         document.getElementById("error").innerText = "Password Don't Match";
+        event.preventDefault(); // Prevent form submission
+      }
+
+      if (!document.getElementById("terms").checked) {
+        document.getElementById("error").innerText =
+          "Please Accept the Terms and Conditions";
+        document.getElementById("submit").ariaDisabled;
         event.preventDefault(); // Prevent form submission
       }
     });
