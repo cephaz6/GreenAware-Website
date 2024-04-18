@@ -1,0 +1,26 @@
+{% csrf_token %} {% if messages %}
+<ul class="messages text-center">
+  {% for message in messages %}
+  <li
+    id="error"
+    style="
+      color: red;
+      font-size: 12px;
+      font-weight: bolder;
+      list-style-type: none;
+    "
+    {%
+    if
+    message.tags
+    %}
+    class="{{ message.tags }}"
+    {%
+    endif
+    %}
+  >
+    {{ message }}
+  </li>
+  {% endfor %}
+  <div class="line"></div>
+</ul>
+{% endif %}
