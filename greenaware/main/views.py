@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
 #import from other files
-from .controllers.auth_controller import *
+from main.controllers.auth_controller import *
 
 
 #Define the SiteInformation File
@@ -44,6 +44,11 @@ def register(request):
 @csrf_exempt
 def login(request):
     return login_user(request)
+
+@csrf_exempt
+def activate(request):
+    return activate_account(request)
+
 
 
 #ERROR HANDLING ROUTE 

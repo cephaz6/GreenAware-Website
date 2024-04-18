@@ -17,7 +17,8 @@ urlpatterns = [
 
     #Authentications
     path('register-user/', views.register, name='register'),
-    path('login-user/', views.login, name='login')
+    path('login-user/', views.login, name='login'),
+    path('activate/<uidb64>/<token>/', views.activate, name='activate'),
 ]   
 
 # handler404 = 'main.views.custom_404'

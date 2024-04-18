@@ -1,7 +1,9 @@
-import random
-import string
+import random, string, requests
 from ..models import CustomUser
+from django.http import JsonResponse, HttpResponseBadRequest, HttpResponseServerError
 
+
+#Unique UserID Generator
 def generate_unique_user_id(length=10):
     characters = string.ascii_letters + string.digits
     user_id = ''.join(random.choice(characters) for _ in range(length))
@@ -12,3 +14,24 @@ def generate_unique_user_id(length=10):
         user_id = ''.join(random.choice(characters) for _ in range(length))
 
     return user_id.lower()
+
+
+#Parsing Observer Information to API Database
+def register_api_observer(data, user_id):
+    try:
+        data['user_id'] = user_id
+
+        # Define the URL of the remote Flask API endpoint for observer registration
+        api_url = "http://127.0.0.1:5000/signup"
+
+        # Send a POST request to the API endpoint
+        response = requests.post(api_url, json=data)
+
+        # Check the response from the Flask API
+        if response.status_code == 200:
+            return JsonResponse({'message': 'Observer registration successful.'}, status=200)
+        else:
+            return JsonResponse({'error': 'Observer registration failed.'}, status=500)
+
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)

@@ -69,6 +69,14 @@ TEMPLATES = [
     },
 ]
 
+# SMTP configuration for sending emails using Gmail
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'server341.web-hosting.com'
+EMAIL_PORT = 465  # Port for TLS
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'info@tindaxtech.com'
+EMAIL_HOST_PASSWORD = 'ze0@;,M{N_S('
+
 WSGI_APPLICATION = 'greenaware.wsgi.application'
 
 
