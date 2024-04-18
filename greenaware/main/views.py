@@ -1,5 +1,8 @@
-from django.shortcuts import render
 import json
+from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
+
+#import from other files
 from .controllers.auth_controller import *
 
 with open('main/data/siteInformation.json') as json_file:
@@ -19,4 +22,23 @@ def login_page(request):
     return render(request, "authentication/login.html", {'site_info': site_info})
 
 
+#----------- OTHER PAGES
+def privacy_policy(request):
+    return render(request, "company/privacy-policy.html", {'site_info': site_info})
+
+def terms(request):
+    return render(request, "company/terms-and-conditions.html", {'site_info': site_info})
+
 #Controllers
+@csrf_exempt
+def register(request):
+    return register_user(request)
+
+@csrf_exempt
+def login(request):
+    return login_user(request)
+
+
+#ERROR HANDLING ROUTE 
+# def custom_404(request, exception):
+#     return render(request, "404.html", status=404)

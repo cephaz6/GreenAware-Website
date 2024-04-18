@@ -10,13 +10,22 @@
                 <h2>Hi, Welcome Back!!</h2>
                 <p>Don't have an account? <a href="/register">Join Us</a></p>
               </div>
-              <form id="signupForm" action="/login/" method="POST">
-                {% csrf_token %}
+              <form
+                id="signupForm"
+                action="/login-user/"
+                method="POST"
+                enctype="application/json"
+              >
+                {% include 'authentication/form-response.html' %}
                 <div class="row">
                   <div class="col-12">
                     <div class="input-group-meta position-relative mb-25">
                       <label>Email*</label>
-                      <input type="email" placeholder="chris@gmail.com" />
+                      <input
+                        type="email"
+                        name="email_address"
+                        placeholder="chris@gmail.com"
+                      />
                     </div>
                   </div>
                   <div class="col-12">
@@ -26,6 +35,7 @@
                         type="password"
                         placeholder="Enter Password"
                         class="pass_log_id"
+                        name="password"
                       />
                       <span class="placeholder_icon"
                         ><span class="passVicon"
@@ -55,81 +65,6 @@
                 </div>
               </form>
             </div>
-            <!-- /.tab-pane -->
-            <div class="tab-pane" role="tabpanel" id="fc2">
-              <div class="text-center mb-20">
-                <h2>Register</h2>
-                <p>Already have an account? <a href="#">Login</a></p>
-              </div>
-              <form id="signupForm" action="/register/" method="POST">
-                {% csrf_token %}
-                <div class="row">
-                  <div class="col-12">
-                    <div class="input-group-meta position-relative mb-25">
-                      <label>First Name*</label>
-                      <input
-                        type="text"
-                        name="first_name"
-                        placeholder="Chris"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-12">
-                    <div class="input-group-meta position-relative mb-25">
-                      <label>Last Name*</label>
-                      <input
-                        type="text"
-                        name="last_name"
-                        placeholder="Emetor"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-12">
-                    <div class="input-group-meta position-relative mb-25">
-                      <label>Email*</label>
-                      <input type="email" placeholder="chris@gmail.com" />
-                    </div>
-                  </div>
-                  <div class="col-12">
-                    <div class="input-group-meta position-relative mb-20">
-                      <label>Password*</label>
-                      <input
-                        type="password"
-                        placeholder="Enter Password"
-                        class="pass_log_id"
-                      />
-                      <span class="placeholder_icon"
-                        ><span class="passVicon"
-                          ><img
-                            src="{% static 'assets/images/icon/icon_13.svg' %}"
-                            alt="" /></span
-                      ></span>
-                    </div>
-                  </div>
-                  <div class="col-12">
-                    <div
-                      class="agreement-checkbox d-flex justify-content-between align-items-center"
-                    >
-                      <div>
-                        <input type="checkbox" id="remember2" />
-                        <label for="remember2"
-                          >By hitting the "Register" button, you agree to the
-                          <a href="#">Terms conditions</a> &
-                          <a href="#">Privacy Policy</a></label
-                        >
-                      </div>
-                    </div>
-                    <!-- /.agreement-checkbox -->
-                  </div>
-                  <div class="col-12">
-                    <button class="btn-four w-100 tran3s d-block mt-20">
-                      Sign up
-                    </button>
-                  </div>
-                </div>
-              </form>
-            </div>
-            <!-- /.tab-pane -->
           </div>
 
           <div class="d-flex align-items-center mt-30 mb-10">
