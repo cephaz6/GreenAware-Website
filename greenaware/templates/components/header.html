@@ -117,13 +117,24 @@
                   Pricing
                 </a>
               </li>
+              {% if not user_data %}
               <li class="nav-item">
                 <a class="nav-link" href="../about-us" role="button">
                   <i class="bi bi-cloud-drizzle"></i>
                   {{site_info.title}}
                 </a>
               </li>
-
+              {% endif %} {% if user_data %}
+              <li class="nav-item color-deep">
+                <a
+                  class="nav-link fw-bold color-deep"
+                  href="../user-dashboard/"
+                  role="button"
+                >
+                  <b>My Dashboard</b>
+                </a>
+              </li>
+              {% endif %}
               <li class="d-md-none ps-2 pe-2">
                 <a href="register" class="signup-btn-one icon-link w-100 mt-20">
                   <span class="flex-fill text-center">Signup</span>
