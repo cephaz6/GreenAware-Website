@@ -64,10 +64,14 @@ def activate(request):
 
 
 #User Dashboard
-@login_required
 @csrf_exempt
+@login_required
 def user_dashboard(request):
     return render(request, 'user-dashboard/user.html', {'site_info': site_info})
+
+@login_required
+def user_subscribe(request):
+    return render(request, 'user-dashboard/pricing.html', {'site_info': site_info})
 
 def logout_user(request):
     logout(request)

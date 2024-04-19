@@ -1,0 +1,32 @@
+{% load static %}
+
+<div class="col-lg-8 d-flex mt-40 md-mt-20">
+  <div class="card-style-eighteen position-relative">
+    <div class="row h-100">
+      <div class="col-lg-4 order-lg-last">
+        <div class="pt-45">
+          <div
+            class="icon rounded-circle d-flex align-items-center justify-content-center"
+          >
+            <img
+              src="{% static 'assets/images/lazy.svg' %}"
+              data-src="{% static 'assets/images/icon/icon_97.svg' %}"
+              alt=""
+              class="lazy-img"
+            />
+          </div>
+          <h6>
+            {{user_data.first_name}} {{user_data.last_name}} <br />
+            <span>{{user_data.email}}</span>
+          </h6>
+        </div>
+      </div>
+      <div class="col-lg-8 d-flex justify-content-center order-lg-first">
+        <h2 style="font-family: 'ClashDisplay'" class="mb-2 text-white p-4">
+          {{user_data.first_name}}'s Dashboard
+        </h2>
+      </div>
+    </div>
+  </div>
+  <!-- /.card-style-eighteen -->
+</div>

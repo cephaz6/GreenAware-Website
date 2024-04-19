@@ -7,7 +7,10 @@
           <div class="tab-content mt-30">
             <div class="tab-pane show active" role="tabpanel" id="fc1">
               <div class="text-center">
-                <h2>Hi, Welcome Back!!</h2>
+                <h2>
+                  Hi, {% if user %} {{user.first_name}} {% endif %}Welcome
+                  Back!!
+                </h2>
                 <p>Don't have an account? <a href="/register">Join Us</a></p>
               </div>
               <form

@@ -25,9 +25,11 @@ urlpatterns = [
     path('activate/<uidb64>/<token>/', views.activate, name='activate'),
     path('logout/', views.logout_user, name='logout'),
 
-    #Error
+    #User Dashboard
     path('user-dashboard/', views.user_dashboard, name='user-dashboard'),
+    path('subscriptions/', views.user_subscribe, name='user-subscribe'),
 
+    #Error
     path('404/', TemplateView.as_view(template_name='404.html'), name='404')
 ]   
 

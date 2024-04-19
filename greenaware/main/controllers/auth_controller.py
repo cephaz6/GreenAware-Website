@@ -77,7 +77,7 @@ def register_user(request):
         activate_account(user, email)
 
         messages.success(request, 'User registered successfully.')
-        return redirect("/success-url")
+        return redirect("/login", {'user': user})
 
     except json.JSONDecodeError:
         messages.error(request, 'Invalid JSON data.')

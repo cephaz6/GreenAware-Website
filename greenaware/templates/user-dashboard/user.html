@@ -5,64 +5,38 @@
 >
   <div class="container">
     <div class="row gx-xl-5">
-      <div class="col-lg-8 d-flex mt-40 md-mt-20">
-        <div class="card-style-eighteen position-relative">
-          <div class="row h-100">
-            <div class="col-lg-4 order-lg-last">
-              <div class="pt-45">
-                <div
-                  class="icon rounded-circle d-flex align-items-center justify-content-center"
-                >
-                  <img
-                    src="{% static 'assets/images/lazy.svg' %}"
-                    data-src="{% static 'assets/images/icon/icon_97.svg' %}"
-                    alt=""
-                    class="lazy-img"
-                  />
-                </div>
-                <h6>
-                  {{user_data.first_name}} {{user_data.last_name}} <br />
-                  <span>{{user_data.email}}</span>
-                </h6>
-              </div>
-            </div>
-            <div class="col-lg-8 d-flex justify-content-center order-lg-first">
-              <h2
-                style="font-family: 'ClashDisplay'"
-                class="mb-2 text-white p-4"
-              >
-                {{user_data.first_name}}'s Dashboard
-              </h2>
-            </div>
-          </div>
-        </div>
-        <!-- /.card-style-eighteen -->
-      </div>
+      {% include 'components/base/user-pane.html' %}
       <div class="col-lg-4 d-flex mt-40 md-mt-20">
         <div class="card-style-two bg-white vstack tran3s w-100">
-          <div class="d-flex flex-wrap">
-            <a href="contact.html" class="btn-eighteen me-4 mt-10"> Services</a>
-            <a href="contact.html" class="btn-nineteen mt-10"
-              ><small>API Key</small></a
-            >
+          <div class="accordion accordion-style-two mt-15" id="accordionOne">
+            <div class="accordion-item">
+              <h5 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseOne"
+                  aria-expanded="false"
+                  aria-controls="collapseOne"
+                >
+                  <span style="font-size: 24px"> Subscription </span>
+                </button>
+              </h5>
+              <div
+                id="collapseOne"
+                class="accordion-collapse collapse"
+                data-bs-parent="#accordionOne"
+              >
+                <div class="accordion-body">
+                  <div class="row">
+                    <a href="contact.html" class="btn-nineteen tran3s mt-10">
+                      API Key
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <img
-            src="{% static 'assets/images/lazy.svg' %}"
-            data-src="{% static 'assets/images/icon/icon_10.svg' %}"
-            alt=""
-            class="lazy-img icon2 me-auto"
-          />
-          <h4 class="fw-bold mt-20 mb-25">Current Subscription Plan</h4>
-          <!-- <p class="mb-20">Optimize expense tracking across platforms, & product lines using multiple cards.</p> -->
-          <a
-            href="service-details.html"
-            class="arrow-btn tran3s mt-auto stretched-link"
-            ><img
-              src="{% static 'assets/images/lazy.svg' %}"
-              data-src="{% static 'assets/images/icon/icon_09.svg' %}"
-              alt=""
-              class="lazy-img"
-          /></a>
         </div>
         <!-- /.card-style-two -->
       </div>
@@ -75,7 +49,7 @@
     class="lazy-img shapes shape_01"
   />
 
-  <div class="team-details light-bg border-top pt-20 lg-pt-80 pb-150 lg-pb-80">
+  <div class="team-details light-bg border-top pt-20 lg-pt-80">
     <div class="container">
       <div class="bg-wrapper">
         <div class="row">
@@ -89,7 +63,7 @@
           </div>
           <div class="col-lg-4 col-md-6">
             <div
-              class="pt-45 pb-45 ps-xl-4 ps-lg-0 ps-3 pe-xl-4 pe-lg-3 pe-3 border-right h-100"
+              class="pt-45 pb-45 ps-xl-4 ps-lg-0 ps-3 pe-xl-4 pe-lg-3 pe-3 border-right"
             >
               <h2 class="name fw-bold">
                 {{user_data.first_name|title}} {{user_data.last_name|title}}
@@ -104,31 +78,8 @@
                   {% endif %}
                 </small>
               </div>
-
-              <div class="social-share pt-35">
-                <ul class="style-none d-flex align-items-center">
-                  <li>
-                    <a href="#">
-                      <i class="bi bi-pencil-fill"></i>
-                      Update Account Information
-                    </a>
-                  </li>
-                </ul>
-                <ul class="style-none d-flex align-items-center">
-                  <li>
-                    <a href="#">
-                      <i class="bi bi-fingerprint"></i>
-                      Change Password
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="pt-45 pb-45 ps-xl-4 ps-lg-0 ps-3 pe-xl-4 pe-lg-0 pe-3">
-              <h3>Details</h3>
-              <table class="w-100 mt-25 lg-mt-20">
+              <hr />
+              <table class="w-100 lg-mt-20">
                 <tr>
                   <td>Role:</td>
                   <td>{{user_data.user_role|title}}</td>
@@ -150,6 +101,30 @@
                   </td>
                 </tr>
               </table>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="pt-45 pb-45 ps-xl-4 ps-lg-0 ps-3 pe-xl-4 pe-lg-0 pe-3">
+              <h3>Details</h3>
+
+              <div class="social-share pt-35">
+                <ul class="style-none d-flex align-items-center">
+                  <li>
+                    <a href="#">
+                      <i class="bi bi-pencil-fill"></i>
+                      Update Account Information
+                    </a>
+                  </li>
+                </ul>
+                <ul class="style-none d-flex align-items-center">
+                  <li>
+                    <a href="#">
+                      <i class="bi bi-fingerprint"></i>
+                      Change Password
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
