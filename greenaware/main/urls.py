@@ -28,6 +28,8 @@ urlpatterns = [
     #User Dashboard
     path('user-dashboard/', views.user_dashboard, name='user-dashboard'),
     path('subscriptions/', views.user_subscribe, name='user-subscribe'),
+    path('checkout/', views.user_checkout, name='user-checkout'),
+    path('payment-history/', views.user_history, name='user-payhistory'),
 
     #Error
     path('404/', TemplateView.as_view(template_name='404.html'), name='404')

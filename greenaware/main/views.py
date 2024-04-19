@@ -21,11 +21,18 @@ def index_page(request):
 def contact_page(request):
     return render(request, "contact-us.html", {'site_info': site_info})
 
+
+
+#Authentication
 def register_page(request):
     return render(request, "authentication/register.html", {'site_info': site_info})
 
 def login_page(request):
     return render(request, "authentication/login.html", {'site_info': site_info})
+
+def logout_user(request):
+    logout(request)
+    return redirect("/login")
 
 
 #----------- OTHER PAGES
@@ -73,9 +80,14 @@ def user_dashboard(request):
 def user_subscribe(request):
     return render(request, 'user-dashboard/pricing.html', {'site_info': site_info})
 
-def logout_user(request):
-    logout(request)
-    return redirect("/login")
+@login_required
+def user_checkout(request):
+    plan = request.GET.get('plan')
+    return render(request, 'user-dashboard/checkout.html', {'site_info': site_info})
+
+@login_required
+def user_history(request):
+    return render(request, 'user-dashboard/payment-history.html', {'site_info': site_info})
 
 
 

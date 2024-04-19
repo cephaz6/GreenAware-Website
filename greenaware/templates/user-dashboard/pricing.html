@@ -6,40 +6,6 @@
   <div class="container">
     <div class="row gx-xl-5">
       {% include 'components/base/user-pane.html' %}
-      <div class="col-lg-4 d-flex mt-40 md-mt-20">
-        <div class="card-style-two bg-white vstack tran3s w-100">
-          <div class="accordion accordion-style-two mt-15" id="accordionOne">
-            <div class="accordion-item">
-              <h5 class="accordion-header">
-                <button
-                  class="accordion-button collapsed"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseOne"
-                  aria-expanded="false"
-                  aria-controls="collapseOne"
-                >
-                  <span style="font-size: 24px"> Subscription </span>
-                </button>
-              </h5>
-              <div
-                id="collapseOne"
-                class="accordion-collapse collapse"
-                data-bs-parent="#accordionOne"
-              >
-                <div class="accordion-body">
-                  <div class="row">
-                    <a href="contact.html" class="btn-nineteen tran3s mt-10">
-                      API Key
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- /.card-style-two -->
-      </div>
     </div>
   </div>
   <img
@@ -61,7 +27,7 @@
             </h2>
 
             <div class="action-btn btn btn-success text-center">
-              <a href="../register?plan=basic" class="text-white">
+              <a href="../checkout?plan=basic" class="text-white">
                 Get API Key
                 <i class="bi bi-chevron-right"></i>
               </a>
@@ -91,7 +57,7 @@
               <small class="fw-500"><i class="bi bi-person-check"></i></small>
             </h2>
             <div class="action-btn btn btn-warning text-center">
-              <a href="../register?plan=professional" class="text-dark">
+              <a href="../checkout?plan=professional" class="text-dark">
                 Suscribe
                 <i class="bi bi-chevron-right"></i>
               </a>
@@ -122,7 +88,7 @@
               <small class="fw-500"><i class="bi bi-buildings"></i></small>
             </h2>
             <div class="action-btn btn btn-danger text-center">
-              <a href="../register?plan=enterprise" class="text-white">
+              <a href="../checkout?plan=enterprise" class="text-white">
                 Suscribe
                 <i class="bi bi-chevron-right"></i>
               </a>
