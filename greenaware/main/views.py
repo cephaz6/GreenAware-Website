@@ -34,6 +34,15 @@ def privacy_policy(request):
 def terms(request):
     return render(request, "company/terms-and-conditions.html", {'site_info': site_info})
 
+def marketplace(request):
+    return render(request, "api/marketplace.html", {'site_info': site_info})
+
+def api_guide(request):
+    return render(request, "api/guide.html", {'site_info': site_info})
+
+def pricing(request):
+    return render(request, "api/pricing.html", {'site_info': site_info})
+
 
 
 #Controllers

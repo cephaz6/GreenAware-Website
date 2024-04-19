@@ -1,0 +1,192 @@
+{% extends 'includes/base.html' %} {% block content %} {% load static %}
+
+<div
+  class="inner-banner-two light-bg text-center pt-200 md-pt-150 pb-85 lg-pb-50 position-relative"
+>
+  <div class="container position-relative">
+    <div class="row">
+      <div class="col-lg-7 m-auto">
+        <ul class="style-none d-inline-flex justify-content-center pager">
+          <li><a href="/">Home</a></li>
+          <li>/</li>
+          <li><a href="#">Pages</a></li>
+          <li>/</li>
+          <li>Pricing</li>
+        </ul>
+        <h1 class="text-xl">Current weather and forecasts collection</h1>
+        <p class="text-sm">
+          Get weather data for any location in the UK immediately with our
+          superb API! Just subscribe with your email and start using minute
+          forecasts, hourly forecasts, history and other weather data in your
+          applications. For more functionality, please consider our professional
+          subscriptions.
+        </p>
+      </div>
+    </div>
+  </div>
+  <img
+    src="{% static 'assets/images/lazy.svg' %}"
+    data-src="{% static 'assets/images/assets/ils_01.svg' %}"
+    alt=""
+    class="lazy-img shapes shape_01"
+  />
+</div>
+
+<div class="pricing-section light-bg border-top pb-150 lg-pb-80">
+  <div class="container">
+    <div class="row gx-xl-5">
+      <div class="col-lg-4 col-sm-12 col-md-6 mb-65 md-mb-30">
+        <div
+          class="pricing-card-one d-flex flex-column w-100 h-100 text-center"
+        >
+          <h2 class="fw-bold">
+            Free <small class="fw-500"><i class="bi bi-person"></i></small>
+          </h2>
+
+          <div class="action-btn btn btn-success text-center">
+            <a href="../register?plan=basic" class="text-white">
+              Get API Key
+              <i class="bi bi-chevron-right"></i>
+            </a>
+          </div>
+          <div class="row">
+            <div class="col-xxl-9 m-auto">
+              <p>
+                <b>60</b> calls/minute <br />
+                <b>1,000</b> calls/month
+              </p>
+            </div>
+          </div>
+          <div
+            class="price-banner text-lg-start d-lg-flex justify-content-center align-items-center"
+          >
+            <div class="price mx-2">£0.00</div>
+          </div>
+          <!-- /.price-banner -->
+          <ul class="style-none mb-35">
+            <li>Current Weather</li>
+            <li>3-hour Forecast 5 days</li>
+            <li class="text-danger text-sm">Hourly Forecast 4 days</li>
+            <li class="text-danger text-sm">Daily Forecast 16 days</li>
+          </ul>
+          <div class="action-btn text-center">
+            Student and Developers.
+            <a href="../register?plan=basic"
+              >Choose Plan <i class="bi bi-chevron-right"></i
+            ></a>
+          </div>
+        </div>
+        <!-- /.pricing-card-one -->
+      </div>
+      <div class="col-lg-4 col-sm-12 col-md-6 mb-65 md-mb-30">
+        <div
+          class="pricing-card-one d-flex flex-column w-100 h-100 text-center"
+        >
+          <h2 class="fw-bold">
+            Professional
+            <small class="fw-500"><i class="bi bi-person-check"></i></small>
+          </h2>
+          <div class="action-btn btn btn-warning text-center">
+            <a href="../register?plan=professional" class="text-dark">
+              Suscribe
+              <i class="bi bi-chevron-right"></i>
+            </a>
+          </div>
+          <div class="row">
+            <div class="col-xxl-9 m-auto">
+              <p>
+                <b>30,000</b> calls/minute <br />
+                <b>1,000,000,000</b> calls/month
+              </p>
+            </div>
+          </div>
+          <div
+            class="price-banner text-lg-start d-lg-flex justify-content-center align-items-center"
+          >
+            <div class="price mx-2">£119.99</div>
+            <b><sub>/month</sub></b>
+          </div>
+          <!-- /.price-banner -->
+          <ul class="style-none mb-35">
+            <li>Current Weather</li>
+            <li>3-hour Forecast 5 days</li>
+            <li>Hourly Forecast 4 days</li>
+            <li>Daily Forecast 16 days</li>
+          </ul>
+          <div class="action-btn text-center">
+            StartUps & MircoBusinesses
+            <a href="../register?plan=professional"
+              >Choose Plan <i class="bi bi-chevron-right"></i
+            ></a>
+          </div>
+        </div>
+        <!-- /.pricing-card-one -->
+      </div>
+      <div class="col-lg-4 col-sm-12 col-md-6 mb-65 md-mb-30">
+        <div
+          class="pricing-card-one d-flex flex-column w-100 h-100 text-center"
+        >
+          <h2 class="fw-bold">
+            Enterprise
+            <small class="fw-500"><i class="bi bi-buildings"></i></small>
+          </h2>
+          <div class="action-btn btn btn-danger text-center">
+            <a href="../register?plan=enterprise" class="text-white">
+              Suscribe
+              <i class="bi bi-chevron-right"></i>
+            </a>
+          </div>
+          <div class="row">
+            <div class="col-xxl-9 m-auto">
+              <p>
+                <b>300,000</b> calls/minute <br />
+                <b>5,000,000,000</b> calls/month
+              </p>
+            </div>
+          </div>
+          <div
+            class="price-banner text-lg-start d-lg-flex justify-content-center align-items-center"
+          >
+            <div class="price mx-2">£499.99</div>
+            <b><sub>/month</sub></b>
+          </div>
+          <!-- /.price-banner -->
+          <ul class="style-none mb-35">
+            <li>Current Weather</li>
+            <li>3-hour Forecast 5 days</li>
+            <li>Hourly Forecast 4 days</li>
+            <li>Daily Forecast 16 days</li>
+          </ul>
+          <div class="action-btn text-center">
+            Companies and Institutions
+            <a href="../register?plan=enterprise"
+              >Choose Plan <i class="bi bi-chevron-right"></i
+            ></a>
+          </div>
+        </div>
+        <!-- /.pricing-card-one -->
+      </div>
+    </div>
+    <!-- /.tab-content -->
+    <div class="contact-banner position-relative">
+      <img
+        src="{% static 'assets/images/lazy.svg' %}"
+        data-src="{% static 'assets/images/assets/ils_04.svg' %}"
+        alt=""
+        class="lazy-img shapes screen_01"
+      />
+      <div class="row align-items-center justify-content-end">
+        <div class="col-lg-6">
+          <h2>Want a <span>custom pricing</span> plan for your business?</h2>
+        </div>
+        <div class="col-lg-4 text-center text-lg-end">
+          <a href="../contact-us" class="btn-four">Let’s Talk</a>
+        </div>
+      </div>
+    </div>
+    <!-- /.contact-banner -->
+  </div>
+</div>
+<!-- /.pricing-section -->
+
+{% endblock %}

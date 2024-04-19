@@ -11,11 +11,13 @@
         <li class="d-flex align-items-center">
           <i class="fa fa-envelop"></i>
           <a href="mailto:{{ site_info.contact.email }}" class="fw-800">
+            <i class="bi bi-envelope-at"></i>
             {{ site_info.contact.email }}
           </a>
         </li>
         <li class="d-flex align-items-center">
           <a href="tel:{{ site_info.contact.phone}}" class="fw-800">
+            <i class="bi bi-phone-vibrate"></i>
             {{ site_info.contact.phone}}
           </a>
         </li>
@@ -43,7 +45,10 @@
                 alt=""
                 class="lazy-img icon me-2"
               />
-              <a href="/login" class="fw-800">Login</a>
+              <a href="/login" class="fw-800">
+                <span class="bi bi-lock"></span>
+                Login
+              </a>
             </li>
             <li class="d-none d-md-inline-block ms-3 ms-lg-5 me-3 me-lg-0">
               <a href="/register" class="signup-btn-one icon-link">
@@ -83,18 +88,28 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="guide" role="button">Guide </a>
+                <a class="nav-link" href="../api-guide" role="button">
+                  <i class="bi bi-compass"></i>
+                  Guide
+                </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="api" role="button">API </a>
+                <a class="nav-link" href="api" role="button">
+                  <i class="bi bi-cpu"></i>
+                  API
+                </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="marketplace" role="button">
+                <a class="nav-link" href="../marketplace" role="button">
+                  <i class="bi bi-bag"></i>
                   Marketplace
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="pricing" role="button"> Pricing </a>
+                <a class="nav-link" href="../pricing" role="button">
+                  <i class="bi bi-tag"></i>
+                  Pricing
+                </a>
               </li>
 
               <li class="d-md-none ps-2 pe-2">
@@ -114,8 +129,12 @@
                       alt=""
                       class="lazy-img icon me-2"
                     />
-                    <a href="mailto:babuninc@company.com" class="fw-800"
-                      >babuninc@company.com</a
+                    <a
+                      href="mailto:{{ site_info.contact.email }}"
+                      class="fw-800"
+                    >
+                      <i class="bi bi-envelope-at"></i>
+                      {{ site_info.contact.email }}</a
                     >
                   </li>
                   <li class="d-flex align-items-center p0 mt-15">
@@ -125,7 +144,10 @@
                       alt=""
                       class="lazy-img icon me-2"
                     />
-                    <a href="tel:+757 699-4478" class="fw-800">+757 699-4478</a>
+                    <a href="tel:{{site_info.contact.phone}}" class="fw-800">
+                      <i class="bi bi-phone"></i>
+                      {{site_info.contact.phone}}
+                    </a>
                   </li>
                 </ul>
               </li>

@@ -1,5 +1,5 @@
 from django.urls import path
-from . import views
+from main import views
 from django.conf.urls import handler404
 
 urlpatterns = [
@@ -12,6 +12,9 @@ urlpatterns = [
     #OtherPages
     path('privacy-policy/', views.privacy_policy, name='privacy_policy'),
     path('terms-and-conditions/', views.terms, name='terms'),
+    path('marketplace/', views.marketplace, name='marketplace'),
+    path('api-guide/', views.api_guide, name='api_guide'),
+    path('pricing/', views.pricing, name='pricing'),
     path('about-us/', views.about),
 
 

@@ -1,0 +1,127 @@
+{% extends 'includes/base.html' %} {% block content %} {% load static %}
+
+<div
+  class="inner-banner-two light-bg text-center pt-200 md-pt-150 pb-85 lg-pb-50 position-relative"
+>
+  <div class="container position-relative">
+    <div class="row">
+      <div class="col-lg-7 m-auto">
+        <ul class="style-none d-inline-flex justify-content-center pager">
+          <li><a href="/">Home</a></li>
+          <li>/</li>
+          <li><a href="#">Pages</a></li>
+          <li>/</li>
+          <li>Marketplace</li>
+        </ul>
+        <h4 class="hero-heading">Weather Products</h4>
+        <p class="text-lg">
+          {{ site_info.title }} provides access to 40-year historical weather
+          data for any location. Get various weather parameters, such as
+          temperature, precipitation, wind and many more.
+        </p>
+      </div>
+    </div>
+  </div>
+  <img
+    src="{% static 'assets/images/lazy.svg' %}"
+    data-src="{% static 'assets/images/assets/ils_01.svg' %}"
+    alt=""
+    class="lazy-img shapes shape_02"
+  />
+</div>
+
+<div class="pricing-section light-bg border-top pb-150 lg-pb-80">
+  <div class="container">
+    <div class="tab-content mt-50 md-mt-30">
+      <div
+        class="tab-pane show active"
+        id="nav-month"
+        role="tabpanel"
+        aria-labelledby="nav-month-tab"
+        tabindex="0"
+      >
+        <div class="row gx-xl-5">
+          <div class="col-md-6 mb-65 md-mb-30">
+            <div
+              class="pricing-card-one d-flex flex-column w-100 h-100 text-center"
+            >
+              <h2 class="fw-bold">History Bulk</h2>
+              <div class="row">
+                <div class="col-xxl-9 m-auto">
+                  <p>
+                    Download an archive of historical weather data for ANY
+                    location for up to 40 years back.
+                  </p>
+                </div>
+              </div>
+              <div
+                class="price-banner text-lg-start d-lg-flex justify-content-center align-items-center"
+              >
+                <div class="price"><sup>£</sup> 3.99</div>
+                <div class="ps-lg-4">
+                  <strong class="text-lg fw-500">Promo Price</strong>
+                  <span>
+                    <b style="text-decoration: line-through"    >Save £6.01</b>
+                  </span>
+                </div>
+              </div>
+              <!-- /.price-banner -->
+              <ul class="style-none mb-35">
+                <li>Data available from March, 2024</li>
+                <li>Nationwide availability, any location</li>
+                <li>Hourly step</li>
+                <li>JSON formats</li>
+              </ul>
+              <div class="action-btn text-center">
+                <span class="text-danger text-bold"> Product Coming Soon </span>
+                <a href="#">Purchase <i class="bi bi-chevron-right"></i></a>
+              </div>
+            </div>
+            <!-- /.pricing-card-one -->
+          </div>
+          <div class="col-md-6 mb-65 md-mb-30">
+            <div
+              class="pricing-card-one d-flex flex-column w-100 h-100 text-center"
+            >
+              <h2 class="fw-bold">Forecast Bulk</h2>
+              <div class="row">
+                <div class="col-xxl-9 m-auto">
+                  <p>
+                    Get data on previously made 16-day forecasts for any
+                    coordinates in the United Kingdom.
+                  </p>
+                </div>
+              </div>
+              <div
+                class="price-banner text-lg-start d-lg-flex justify-content-center align-items-center"
+              >
+                <div class="price"><sup>£</sup> 7.99</div>
+                <div class="ps-lg-4">
+                  <strong class="text-lg fw-500">Promo Price</strong>
+                  <span>
+                    <b style="text-decoration: line-through">Save £12.01</b>
+                  </span>
+                </div>
+              </div>
+              <!-- /.price-banner -->
+              <ul class="style-none mb-35">
+                <li>Data available from March, 2024</li>
+                <li>Nationwide availability, any location</li>
+                <li>Hourly step</li>
+                <li>JSON formats</li>
+              </ul>
+              <div class="action-btn text-center">
+                <span class="text-danger text-bold"> Product Coming Soon </span>
+                <a href="#">Purchase <i class="bi bi-chevron-right"></i></a>
+              </div>
+            </div>
+            <!-- /.pricing-card-one -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /.pricing-section -->
+
+{% endblock %}

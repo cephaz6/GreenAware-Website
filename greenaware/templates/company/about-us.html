@@ -1,5 +1,219 @@
 {% extends 'includes/base.html' %} {% block content %} {% load static %}
 
-<h1 style="margin-top: 200px" class="text-center">About {{site_info.title}}</h1>
+<div
+  class="inner-banner-two light-bg text-center pt-200 md-pt-150 pb-85 lg-pb-50 position-relative"
+>
+  <div class="container position-relative">
+    <div class="row">
+      <div class="col-xl-8 col-lg-9 m-auto">
+        <ul class="style-none d-inline-flex justify-content-center pager">
+          <li><a href="/">Home</a></li>
+          <li>/</li>
+          <li>About</li>
+        </ul>
+        <h1 class="hero-heading">{{ site_info.title }}, UK</h1>
+        <p class="text-lg">
+          We are a UK Based Charity Organisation concerned with the climate
+          changes caused by Global Warming.
+        </p>
+      </div>
+    </div>
+  </div>
+  <img
+    src="{% static 'assets/images/lazy.svg' %}"
+    data-src="{% static 'assets/images/assets/ils_01.svg' %}"
+    alt=""
+    class="lazy-img shapes shape_01"
+  />
+  <img
+    src="{% static 'assets/images/lazy.svg' %}"
+    data-src="{% static 'assets/images/assets/ils_02.svg' %}"
+    alt=""
+    class="lazy-img shapes shape_02"
+  />
+</div>
+
+<div
+  class="text-feature-three text-feature-seven position-relative mt-160 lg-mt-80 pb-200 lg-pb-120"
+>
+  <div class="container">
+    <div class="row">
+      <div
+        class="col-xxl-5 col-lg-6 ms-auto d-flex flex-column order-lg-last wow fadeInRight"
+      >
+        <div class="title-one">
+          <h2>Overview</h2>
+        </div>
+        <!-- /.title-one -->
+        <p class="text-lg mt-30 mb-55 lg-mb-30">
+          <b>Greenaware’s</b> services will allow climate-change conscious
+          individuals and groups around the Earth to register and contribute by
+          providing climate readings and observations related to their local
+          regions at intervals. What3words a ‘proprietary geocode system
+          designed to identify any location on the surface of Earth with a
+          resolution of about 3 meters' (What3words), will be used to convey
+          precise geographic coordinates. Registered contributors, termed
+          <b>‘Observers’</b> will first have to complete an online educational
+          course before qualifying to contribute data. They will then be paid a
+          monthly stipend to their accounts as a token of gratitude for their
+          support.
+        </p>
+        <ul class="style-none">
+          <li>Education and Healthcare</li>
+          <li>Open Source and Weather stations</li>
+          <li>Passion, Intelligence and Responsibility</li>
+        </ul>
+      </div>
+      <div class="col-xxl-6 col-lg-5 d-flex order-lg-first wow fadeInLeft">
+        <div class="media-wrapper w-100 position-relative">
+          <img
+            style="border-radius: 35px 0px 30px"
+            src="{% static 'assets/images/media/team.jpg' %}"
+            alt=""
+          />
+          <img
+            src="{% static 'assets/images/lazy.svg' %}"
+            data-src="{% static 'assets/images/assets/screen_04.svg' %}"
+            alt=""
+            class="lazy-img shapes screen_01"
+          />
+          <img
+            src="{% static 'assets/images/lazy.svg' %}"
+            data-src="{% static 'assets/images/assets/screen_05.svg' %}"
+            alt=""
+            class="lazy-img shapes screen_02"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="team-section-three light-bg position-relative pt-120 lg-pt-60 pb-130 lg-pb-60"
+>
+  <div class="container">
+    <div class="position-relative">
+      <div class="title-one mb-40 lg-mb-10 wow fadeInUp">
+        <h2>Our Scrum Team</h2>
+      </div>
+      <!-- /.title-one -->
+
+      <div class="row">
+        <div class="col-lg-3 col-sm-6 wow fadeInUp">
+          <div class="card-style-fifteen mt-35">
+            <div
+              class="media d-flex align-items-center justify-content-center position-relative overflow-hidden"
+            >
+              <img
+                src="images/lazy.svg"
+                data-src="images/media/img_27.jpg"
+                alt=""
+                class="lazy-img w-100"
+              />
+              <a
+                href="#"
+                class="round-btn rounded-circle d-flex align-items-center justify-content-center tran3s"
+                ><i class="bi bi-arrow-up-right"></i
+              ></a>
+            </div>
+            <h4 class="fw-500 pt-20 m0">Dr. Francis Morrissey</h4>
+            <div class="fs-6">Product Owner</div>
+          </div>
+          <!-- /.card-style-fifteen -->
+        </div>
+        <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+          <div class="card-style-fifteen mt-35">
+            <div
+              class="media d-flex align-items-center justify-content-center position-relative overflow-hidden"
+            >
+              <img
+                src="images/lazy.svg"
+                data-src="images/media/img_28.jpg"
+                alt=""
+                class="lazy-img w-100"
+              />
+              <a
+                href="#"
+                class="round-btn rounded-circle d-flex align-items-center justify-content-center tran3s"
+                ><i class="bi bi-arrow-up-right"></i
+              ></a>
+            </div>
+            <h4 class="fw-500 pt-20 m0">Iheke O.</h4>
+            <div class="fs-6">Senior Developer</div>
+          </div>
+          <!-- /.card-style-fifteen -->
+        </div>
+        <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.2s">
+          <div class="card-style-fifteen mt-35">
+            <div
+              class="media d-flex align-items-center justify-content-center position-relative overflow-hidden"
+            >
+              <img
+                src="images/lazy.svg"
+                data-src="images/media/img_29.jpg"
+                alt=""
+                class="lazy-img w-100"
+              />
+              <a
+                href="#"
+                class="round-btn rounded-circle d-flex align-items-center justify-content-center tran3s"
+                ><i class="bi bi-arrow-up-right"></i
+              ></a>
+            </div>
+            <h4 class="fw-500 pt-20 m0">Cephas Oselumese</h4>
+            <div class="fs-6">Dev Engineer</div>
+          </div>
+          <!-- /.card-style-fifteen -->
+        </div>
+        <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+          <div class="card-style-fifteen mt-35">
+            <div
+              class="media d-flex align-items-center justify-content-center position-relative overflow-hidden"
+            >
+              <img
+                src="images/lazy.svg"
+                data-src="images/media/img_30.jpg"
+                alt=""
+                class="lazy-img w-100"
+              />
+              <a
+                href="#"
+                class="round-btn rounded-circle d-flex align-items-center justify-content-center tran3s"
+                ><i class="bi bi-arrow-up-right"></i
+              ></a>
+            </div>
+            <h4 class="fw-500 pt-20 m0">Chris Emetoh</h4>
+            <div class="fs-6">Product Designer</div>
+          </div>
+          <!-- /.card-style-fifteen -->
+        </div>
+      </div>
+
+      <div class="section-btn sm-mt-40">
+        <a href="#" class="btn-five icon-link">
+          <span class="text">Using Agile Methodology</span>
+          <div
+            class="icon tran3s rounded-circle d-flex align-items-center justify-content-center"
+          >
+            <i class="bi bi-arrow-up-right"></i>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <img
+    src="images/lazy.svg"
+    data-src="images/shape/shape_05.svg"
+    alt=""
+    class="lazy-img shapes shape_01"
+  />
+  <img
+    src="images/lazy.svg"
+    data-src="images/shape/shape_05.svg"
+    alt=""
+    class="lazy-img shapes shape_02"
+  />
+</div>
 
 {% endblock %}
