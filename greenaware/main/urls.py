@@ -1,6 +1,7 @@
 from django.urls import path
 from main import views
 from django.conf.urls import handler404
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path('', views.index_page, name='index_page'),
@@ -22,6 +23,10 @@ urlpatterns = [
     path('register-user/', views.register, name='register'),
     path('login-user/', views.login, name='login'),
     path('activate/<uidb64>/<token>/', views.activate, name='activate'),
+
+    #Error
+    path('404/', TemplateView.as_view(template_name='404.html'), name='404'),
 ]   
 
-# handler404 = 'main.views.custom_404'
+# Assign the custom_404 function as the handler for 404 errors
+handler404 = views.custom_404_view
