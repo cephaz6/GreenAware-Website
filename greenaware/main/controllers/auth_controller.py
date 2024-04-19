@@ -146,7 +146,7 @@ def login_user(request):
         # Generate JWT token
         token_payload = {
             'user_id': user.user_id,
-            'exp': datetime.utcnow() + timedelta(days=1)  # Token expiration time
+            'exp': datetime.utcnow() + timedelta(minutes=2)  # Token expiration time
         }
         jwt_token = jwt.encode(token_payload, settings.JWT_KEY, algorithm='HS256')
 
