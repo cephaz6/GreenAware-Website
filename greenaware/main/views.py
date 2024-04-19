@@ -1,9 +1,13 @@
 import json
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
+
 
 #import from other files
 from main.controllers.auth_controller import *
+from main.utils.authentication import get_user_dashboard_data
 
 
 #Define the SiteInformation File
@@ -60,9 +64,15 @@ def activate(request):
 
 
 #User Dashboard
+@login_required
 @csrf_exempt
 def user_dashboard(request):
-    return render(request, "user-dashboard/user.html", {'site_info': site_info})
+    return render(request, 'user-dashboard/user.html', {'site_info': site_info})
+
+def logout_user(request):
+    logout(request)
+    return redirect("/login")
+
 
 
 #ERROR HANDLING ROUTE 

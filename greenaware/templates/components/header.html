@@ -40,6 +40,7 @@
         <!-- logo -->
         <div class="right-widget order-lg-3 ms-auto">
           <ul class="d-flex align-items-center style-none">
+            {% if not user_data %}
             <li class="d-flex align-items-center login-btn-one me-3 me-md-0">
               <img
                 src="{% static 'assets/images/lazy.svg' %}"
@@ -49,7 +50,7 @@
               />
               <a href="/login" class="fw-800">
                 <span class="bi bi-lock"></span>
-                Login
+                <span class="d-none d-md-inline-block">Login</span>
               </a>
             </li>
             <li class="d-none d-md-inline-block ms-3 ms-lg-5 me-3 me-lg-0">
@@ -62,8 +63,10 @@
                 </div>
               </a>
             </li>
+            {% else %} {% include 'components/base/side-nav.html' %} {% endif %}
           </ul>
         </div>
+
         <!--/.right-widget-->
         <nav class="navbar navbar-expand-lg p0 ms-lg-5 order-lg-2">
           <button

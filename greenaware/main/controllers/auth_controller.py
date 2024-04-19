@@ -152,6 +152,7 @@ def login_user(request):
 
         # Set JWT token in session or response cookies
         request.session['access_token'] = jwt_token
+        print(jwt_token)
 
         if user.user_role == 'observer':
             login(request, user)
