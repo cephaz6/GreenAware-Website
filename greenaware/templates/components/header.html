@@ -5,7 +5,9 @@
     <div class="d-md-flex justify-content-between">
       <div class="greetings text-center">
         <span class="opacity-50">Hello!!</span>
-        <span class="fw-800">Welcome to {{ site_info.title }}</span>
+        <span class="fw-800"
+          >Welcome to {{ site_info.title }} <i class="bi bi-brightness-high"></i
+        ></span>
       </div>
       <ul class="style-none d-none d-md-flex contact-info">
         <li class="d-flex align-items-center">
@@ -93,6 +95,7 @@
                   Guide
                 </a>
               </li>
+
               <li class="nav-item">
                 <a class="nav-link" href="api" role="button">
                   <i class="bi bi-cpu"></i>
@@ -109,6 +112,12 @@
                 <a class="nav-link" href="../pricing" role="button">
                   <i class="bi bi-tag"></i>
                   Pricing
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../about-us" role="button">
+                  <i class="bi bi-cloud-drizzle"></i>
+                  {{site_info.title}}
                 </a>
               </li>
 
