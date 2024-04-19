@@ -20,6 +20,10 @@ from django.utils.encoding import force_bytes
 from django.core.exceptions import ImproperlyConfigured
 
 
+import jwt
+from django.conf import settings
+from datetime import datetime, timedelta
+
 #imports from other files
 from ..models import CustomUser
 from main.utils import  utility as utils
@@ -114,19 +118,16 @@ def activate_account(user, email):
 
 
 #Login Controller
+@csrf_exempt
 def login_user(request):
     if request.method != 'POST':
         return redirect("")
 
     try:
-        user_id = utils.generate_unique_user_id()
-
         data = {key: request.POST.get(key) for key in request.POST}
 
         email = data.get('email_address')
         password = data.get('password')
-
-        print(data)
 
         if not email or not password:
             messages.error(request, 'Email and password are required.')
@@ -142,9 +143,15 @@ def login_user(request):
             messages.error(request, 'Your account is not active.')
             return redirect("/login")
 
-        if not user.is_verified:
-            messages.error(request, 'Your account is not verified.')
-            return redirect("/login")
+        # Generate JWT token
+        token_payload = {
+            'user_id': user.user_id,
+            'exp': datetime.utcnow() + timedelta(days=1)  # Token expiration time
+        }
+        jwt_token = jwt.encode(token_payload, settings.JWT_KEY, algorithm='HS256')
+
+        # Set JWT token in session or response cookies
+        request.session['access_token'] = jwt_token
 
         if user.user_role == 'observer':
             login(request, user)
@@ -159,5 +166,6 @@ def login_user(request):
             return redirect("/login")
 
     except Exception as e:
+        print(e)
         messages.error(request, 'An error occurred. Please try again later.')
         return redirect("/login")

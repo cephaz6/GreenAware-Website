@@ -59,6 +59,11 @@ def activate(request):
     return activate_account(request)
 
 
+#User Dashboard
+@csrf_exempt
+def user_dashboard(request):
+    return render(request, "user-dashboard/user.html", {'site_info': site_info})
+
 
 #ERROR HANDLING ROUTE 
 def custom_404_view(request, exception):    

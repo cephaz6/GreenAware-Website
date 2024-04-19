@@ -25,7 +25,9 @@ urlpatterns = [
     path('activate/<uidb64>/<token>/', views.activate, name='activate'),
 
     #Error
-    path('404/', TemplateView.as_view(template_name='404.html'), name='404'),
+    path('user-dashboard/', views.user_dashboard, name='user-dashboard'),
+
+    path('404/', TemplateView.as_view(template_name='404.html'), name='404')
 ]   
 
 # Assign the custom_404 function as the handler for 404 errors
