@@ -15,7 +15,7 @@ def index_page(request):
     return render(request, "index.html", {'site_info': site_info})
 
 def contact_page(request):
-    return render(request, "contact-us.html")
+    return render(request, "contact-us.html", {'site_info': site_info})
 
 def register_page(request):
     return render(request, "authentication/register.html", {'site_info': site_info})
