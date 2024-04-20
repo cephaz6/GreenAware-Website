@@ -26,7 +26,7 @@ urlpatterns = [
     path('logout/', views.logout_user, name='logout'),
 
     #User Dashboard
-    path('user-dashboard/', views.user_dashboard, name='user-dashboard'),
+    path('dashboard/', views.user_dashboard, name='user-dashboard'),
     path('subscriptions/', views.user_subscribe, name='user-subscribe'),
     path('checkout/', views.user_checkout, name='user-checkout'),
     path('payment-history/', views.user_history, name='user-payhistory'),

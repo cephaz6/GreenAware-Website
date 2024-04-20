@@ -44,7 +44,10 @@
             aria-expanded="false"
             aria-controls="collapseOne"
           >
-            <span style="font-size: 24px"> Subscription </span>
+            <span style="font-size: 24px">
+              {% if user_data.user_role == 'observer' %} Observations {% else %}
+              Subscription {% endif %}
+            </span>
           </button>
         </h5>
         <div
@@ -54,9 +57,18 @@
         >
           <div class="accordion-body">
             <div class="row">
-              <a href="contact.html" class="btn-nineteen tran3s mt-10">
+              {% if user_data.user_role == 'observer' %}
+              <a href="new-observation" class="btn-nineteen tran3s mt-10">
+                Add New Observation
+              </a>
+              <a href="bulk-observation" class="btn-nineteen tran3s mt-10">
+                Add Bulk OBS
+              </a>
+              {% else %}
+              <a href="../subscriptions" class="btn-nineteen tran3s mt-10">
                 Upgrade Plan
               </a>
+              {% endif %}
             </div>
           </div>
         </div>

@@ -18,14 +18,16 @@
       class="dropdown-menu dropdown-menu-right"
       aria-labelledby="userDropdown"
     >
-      <a class="dropdown-item" href="#">
+      <a class="dropdown-item" href="../dashboard/#profile">
         <b>
           <i class="bi bi-person-video3"></i>
           My Profile
         </b>
       </a>
+      {% if user_data.user_role == 'user' %}
       <a class="dropdown-item" href="#">
-        <i class="bi bi-key-fill"></i> My Api Keys
+        <i class="bi bi-key-fill"></i>
+        My Api Keys
       </a>
       <a class="dropdown-item" href="../subscriptions">
         <i class="bi bi-database-gear"></i>
@@ -35,6 +37,7 @@
         <i class="bi bi-wallet"></i>
         Payment History
       </a>
+      {% endif %}
       <div class="dropdown-divider"></div>
       <a class="dropdown-item" href="#">
         <i class="bi bi-gear"></i>

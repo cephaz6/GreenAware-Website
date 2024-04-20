@@ -74,20 +74,20 @@ def activate(request):
 @csrf_exempt
 @login_required
 def user_dashboard(request):
-    return render(request, 'user-dashboard/user.html', {'site_info': site_info})
+    return render(request, 'dashboard/user.html', {'site_info': site_info})
 
 @login_required
 def user_subscribe(request):
-    return render(request, 'user-dashboard/pricing.html', {'site_info': site_info})
+    return render(request, 'dashboard/pricing.html', {'site_info': site_info})
 
 @login_required
 def user_checkout(request):
     plan = request.GET.get('plan')
-    return render(request, 'user-dashboard/checkout.html', {'site_info': site_info})
+    return render(request, 'dashboard/checkout.html', {'site_info': site_info})
 
 @login_required
 def user_history(request):
-    return render(request, 'user-dashboard/payment-history.html', {'site_info': site_info})
+    return render(request, 'dashboard/payment-history.html', {'site_info': site_info})
 
 
 
