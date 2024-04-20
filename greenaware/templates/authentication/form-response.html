@@ -1,30 +1,9 @@
-{% csrf_token %} {% if messages %}
-<style>
-  .error {
-    color: red;
-  }
-  .success {
-    color: green;
-  }
-</style>
-
-<ul class="messages text-center">
-  {% for message in messages %}
-  <li
-    id="error"
-    style="font-size: 12px; font-weight: bolder; list-style-type: none"
-    {%
-    if
-    message.tags
-    %}
-    class="{{ message.tags }}"
-    {%
-    endif
-    %}
-  >
-    {{ message }}
-  </li>
-  {% endfor %}
-  <div class="line"></div>
-</ul>
-{% endif %}
+{% load static %} {% if messages %} {% for message in messages %}
+<div
+  style="font-size: 14px"
+  class="alert alert-warning alert-dismissible fade show text-center"
+  role="alert"
+>
+  <strong>{{ message }}</strong>
+</div>
+{% endfor %} {% endif %}

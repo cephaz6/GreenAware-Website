@@ -4,130 +4,140 @@
   <div class="checkout-section pt-50 light-bg lg-pt-200 pb-100 sm-pb-50">
     <div class="container">
       <!-- /.checkout-toggle-area -->
-      <form action="#" class="checkout-form">
+      <form
+        id="signupForm"
+        action=""
+        method="POST"
+        enctype="application/json"
+        class="checkout-form"
+      >
+        {% csrf_token %} {% include 'authentication/form-response.html' %}
         <div class="row">
           <div class="col-lg-7">
             <h2 class="main-title">Add A New Observation</h2>
-            <div class="">
-              <div class="row">
-                <div class="col-12">
+            <div class="row">
+              <div class="col-12">
+                <input
+                  type="hidden"
+                  name="user_id"
+                  value="{{user_data.user_id}}"
+                />
+                <input
+                  type="text"
+                  required
+                  name="w3w_address"
+                  placeholder="W3W Address e.g River.Ocean.Lake"
+                  class="single-input-wrapper"
+                />
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="date">When will this observation be?*</label>
                   <input
-                    type="text"
+                    type="date"
+                    name="date"
                     required
-                    name="w3w_address"
-                    placeholder="W3W Address e.g River.Ocean.Lake"
                     class="single-input-wrapper"
                   />
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="date">When will this observation be?*</label>
-                    <input
-                      type="date"
-                      name="date"
-                      required
-                      class="single-input-wrapper"
-                    />
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="date">What time of the day?*</label>
-                    <input
-                      type="time"
-                      name="time"
-                      required
-                      class="single-input-wrapper"
-                    />
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <input
-                    required
-                    type="number"
-                    name="temperature_land_surface"
-                    placeholder="Temperature Land Surface (deg celsius)*"
-                    class="single-input-wrapper"
-                  />
-                </div>
-                <div class="col-lg-6">
-                  <input
-                    required
-                    type="number"
-                    name="temperature_sea_surface"
-                    placeholder="Temperature Sea Surface (deg celsius)*"
-                    class="single-input-wrapper"
-                  />
-                </div>
-                <div class="col-lg-3">
-                  <input
-                    required
-                    type="number"
-                    name="humidity"
-                    placeholder="Humidity*"
-                    class="single-input-wrapper"
-                  />
-                </div>
-                <div class="col-lg-3">
-                  <input
-                    required
-                    type="number"
-                    name="wind_speed"
-                    placeholder="Wind Speed*"
-                    class="single-input-wrapper"
-                  />
-                </div>
-                <div class="col-lg-3">
-                  <input
-                    required
-                    type="number"
-                    name="wind_direction"
-                    placeholder="Wind Direction*"
-                    class="single-input-wrapper"
-                  />
-                </div>
-                <div class="col-lg-3">
-                  <input
-                    required
-                    type="number"
-                    name="precipitation"
-                    placeholder="Precipitation*"
-                    class="single-input-wrapper"
-                  />
-                </div>
-                <div class="col-lg-3">
-                  <input
-                    required
-                    type="number"
-                    name="haze"
-                    placeholder="Haze*"
-                    class="single-input-wrapper"
-                  />
-                </div>
-                <div class="col-lg-3">
-                  <input
-                    required
-                    type="number"
-                    name="timezone_offset"
-                    placeholder="Timezone (GMT+0)*"
-                    class="single-input-wrapper"
-                  />
-                </div>
-
-                <div class="col-lg-3">
-                  <!-- <label for="">Weather Condition</label> -->
-                  <select class="theme-select-menu">
-                    {% for weather_note in weather_notes %}
-                    <option value="{{ weather_note.id }}">
-                      {{ weather_note.main|title }} -
-                      <span>{{ weather_note.description|title }}</span>
-                    </option>
-                    {% endfor %}
-                  </select>
                 </div>
               </div>
-              <button class="btn-ten tran3s w-100">Submit Observation</button>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="date">What time of the day?*</label>
+                  <input
+                    type="time"
+                    name="time"
+                    required
+                    class="single-input-wrapper"
+                  />
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <input
+                  required
+                  type="number"
+                  name="temperature_land_surface"
+                  placeholder="Temperature Land Surface (deg celsius)*"
+                  class="single-input-wrapper"
+                />
+              </div>
+              <div class="col-lg-6">
+                <input
+                  required
+                  type="number"
+                  name="temperature_sea_surface"
+                  placeholder="Temperature Sea Surface (deg celsius)*"
+                  class="single-input-wrapper"
+                />
+              </div>
+              <div class="col-lg-3">
+                <input
+                  required
+                  type="number"
+                  name="humidity"
+                  placeholder="Humidity*"
+                  class="single-input-wrapper"
+                />
+              </div>
+              <div class="col-lg-3">
+                <input
+                  required
+                  type="number"
+                  name="wind_speed"
+                  placeholder="Wind Speed*"
+                  class="single-input-wrapper"
+                />
+              </div>
+              <div class="col-lg-3">
+                <input
+                  required
+                  type="number"
+                  name="wind_direction"
+                  placeholder="Wind Direction*"
+                  class="single-input-wrapper"
+                />
+              </div>
+              <div class="col-lg-3">
+                <input
+                  required
+                  type="number"
+                  name="precipitation"
+                  placeholder="Precipitation*"
+                  class="single-input-wrapper"
+                />
+              </div>
+              <div class="col-lg-3">
+                <input
+                  required
+                  type="number"
+                  name="haze"
+                  placeholder="Haze*"
+                  class="single-input-wrapper"
+                />
+              </div>
+              <div class="col-lg-3">
+                <input
+                  required
+                  type="text"
+                  name="timezone_offset"
+                  placeholder="Timezone (GMT+0)*"
+                  class="single-input-wrapper"
+                />
+              </div>
+
+              <div class="col-lg-6">
+                <select name="weather_id" class="theme-select-menu">
+                  <option selected disabled>Weather Note</option>
+                  {% for weather_note in weather_notes %}
+                  <option value="{{ weather_note.id }}">
+                    {{ weather_note.main|title }} -
+                    <span>{{ weather_note.description|title }}</span>
+                  </option>
+                  {% endfor %}
+                </select>
+              </div>
             </div>
+            <button class="btn-ten tran3s w-100">Submit Observation</button>
             <!-- /.user-profile-data -->
           </div>
           <!-- /.col- -->

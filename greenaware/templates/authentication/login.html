@@ -19,8 +19,9 @@
                 method="POST"
                 enctype="application/json"
               >
-                {% include 'authentication/form-response.html' %}
+                {% csrf_token %}
                 <div class="row">
+                  {% include 'authentication/form-response.html' %}
                   <div class="col-12">
                     <div class="input-group-meta position-relative mb-25">
                       <label>Email*</label>

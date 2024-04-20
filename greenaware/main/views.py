@@ -7,6 +7,7 @@ from django.contrib.auth import logout
 
 #import from other files
 from main.controllers.auth_controller import *
+from main.controllers.observation_controller import *
 from main.utils.authentication import get_user_dashboard_data
 from main.utils.utility import fetch_weather_notes
 
@@ -97,12 +98,16 @@ def user_history(request):
 @csrf_exempt
 @login_required
 def add_observation(request):
-    weather_notes = fetch_weather_notes()
-    
-    if weather_notes is not None:
-        return render(request, 'dashboard/observer/add-observation.html', {'site_info': site_info, 'weather_notes': weather_notes})
-    else:
-        return HttpResponse('Error fetching weather notes')
+    if request.method == 'GET':
+        weather_notes = fetch_weather_notes()
+        if weather_notes is not None:
+            return render(request, 'dashboard/observer/add-observation.html', {'site_info': site_info, 'weather_notes': weather_notes})
+        else:
+            return HttpResponse('Error fetching weather notes')
+    elif request.method == 'POST':
+        jwt_token = request.session.get('access_token')
+        data = {key: request.POST.get(key) for key in request.POST}
+        return add_new_observation(data, jwt_token)
 
 @csrf_exempt
 @login_required

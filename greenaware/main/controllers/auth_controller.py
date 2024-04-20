@@ -5,7 +5,7 @@ from django.contrib.auth import get_user_model, authenticate, login
 from django.contrib.auth.password_validation import validate_password
 from django.contrib import messages
 from django.core.exceptions import ValidationError
-from django.http import JsonResponse, HttpResponseBadRequest, HttpResponseServerError
+from django.http import JsonResponse, HttpResponseBadRequest, HttpResponseServerError, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.urls import reverse
 
@@ -155,7 +155,6 @@ def login_user(request):
         print(jwt_token)
 
         login(request, user)
-    
         next_url = request.GET.get('next')
         if next_url:
             return redirect(next_url)
