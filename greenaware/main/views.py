@@ -8,6 +8,7 @@ from django.contrib.auth import logout
 #import from other files
 from main.controllers.auth_controller import *
 from main.utils.authentication import get_user_dashboard_data
+from main.utils.utility import fetch_weather_notes
 
 
 #Define the SiteInformation File
@@ -80,6 +81,7 @@ def user_dashboard(request):
 def user_subscribe(request):
     return render(request, 'dashboard/pricing.html', {'site_info': site_info})
 
+@csrf_exempt
 @login_required
 def user_checkout(request):
     plan = request.GET.get('plan')
@@ -89,6 +91,23 @@ def user_checkout(request):
 def user_history(request):
     return render(request, 'dashboard/payment-history.html', {'site_info': site_info})
 
+
+
+#Observer Views
+@csrf_exempt
+@login_required
+def add_observation(request):
+    weather_notes = fetch_weather_notes()
+    
+    if weather_notes is not None:
+        return render(request, 'dashboard/observer/add-observation.html', {'site_info': site_info, 'weather_notes': weather_notes})
+    else:
+        return HttpResponse('Error fetching weather notes')
+
+@csrf_exempt
+@login_required
+def observations(request):
+    return render(request, 'dashboard/observer/observations.html', {'site_info': site_info})
 
 
 #ERROR HANDLING ROUTE 

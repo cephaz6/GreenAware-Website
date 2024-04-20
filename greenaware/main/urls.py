@@ -31,6 +31,10 @@ urlpatterns = [
     path('checkout/', views.user_checkout, name='user-checkout'),
     path('payment-history/', views.user_history, name='user-payhistory'),
 
+    #Observer Dashboard
+    path('new-observation/', views.add_observation, name='new-observation'),
+    path('observations/', views.observations, name='observations'),
+
     #Error
     path('404/', TemplateView.as_view(template_name='404.html'), name='404')
 ]   

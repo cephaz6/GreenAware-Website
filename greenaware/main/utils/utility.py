@@ -35,3 +35,11 @@ def register_api_observer(data, user_id):
 
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
+
+#GRAB WEATHER CONDITIONS FROM API DB
+def fetch_weather_notes():
+    response = requests.get('http://127.0.0.1:5000/weather-notes')
+    if response.status_code == 200:
+        return response.json()
+    else:
+        return None
