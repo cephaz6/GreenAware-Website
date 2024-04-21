@@ -10,6 +10,7 @@ from main.controllers.auth_controller import *
 from main.controllers.observation_controller import *
 from main.utils.authentication import get_user_dashboard_data
 from main.utils.utility import fetch_weather_notes
+from main.utils.custom_decorators import observer_only
 
 
 #Define the SiteInformation File
@@ -97,6 +98,7 @@ def user_history(request):
 #Observer Views
 @csrf_exempt
 @login_required
+@observer_only
 def add_observation(request):
     if request.method == 'GET':
         weather_notes = fetch_weather_notes()
@@ -111,6 +113,7 @@ def add_observation(request):
 
 @csrf_exempt
 @login_required
+@observer_only
 def observations(request):
     return render(request, 'dashboard/observer/observations.html', {'site_info': site_info})
 
@@ -118,3 +121,6 @@ def observations(request):
 #ERROR HANDLING ROUTE 
 def custom_404_view(request, exception):    
     return render(request, '404.html', {'site_info': site_info}, status=404)
+
+def error_401(request):
+    return render(request, "401.html", {'site_info': site_info})

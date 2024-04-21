@@ -1,0 +1,23 @@
+{% extends 'includes/base.html' %} {% block content %} {% load static %}
+
+<div
+  class="error-page text-center d-flex align-items-center justify-content-center flex-column light-bg position-relative"
+>
+  <h1 class="font-magnita">403</h1>
+  <h2 class="fw-bold">You are Unauthorized!!!</h2>
+  <p class="text-lg mb-45">{{site_info.description}}</p>
+  <div><a href="/" class="btn-four">Go Back</a></div>
+  <img
+    src="{% static 'assets/images/lazy.svg' %}"
+    data-src="{% static 'assets/images/assets/ils_05.svg' %}"
+    alt=""
+    class="lazy-img shapes shape_01"
+  />
+  <img
+    src="{% static 'assets/images/lazy.svg' %}"
+    data-src="{% static 'assets/images/assets/ils_06.svg' %}"
+    alt=""
+    class="lazy-img shapes shape_02"
+  />
+</div>
+{% endblock %}

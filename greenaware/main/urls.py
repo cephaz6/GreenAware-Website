@@ -36,7 +36,8 @@ urlpatterns = [
     path('observations/', views.observations, name='observations'),
 
     #Error
-    path('404/', TemplateView.as_view(template_name='404.html'), name='404')
+    path('404/', TemplateView.as_view(template_name='404.html'), name='404'),
+    path('unauthorized/', views.error_401, name='401'),
 ]   
 
 # Assign the custom_404 function as the handler for 404 errors
