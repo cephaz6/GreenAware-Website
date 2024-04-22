@@ -145,8 +145,8 @@ def login_user(request):
 
         # Generate JWT token
         token_payload = {
-            'user_id': user.user_id,
-            'exp': datetime.utcnow() + timedelta(minutes=2)  # Token expiration time
+            'identity': user.email,
+            'exp': datetime.utcnow() + timedelta(days=1)  # Token expiration time
         }
         jwt_token = jwt.encode(token_payload, settings.JWT_KEY, algorithm='HS256')
 
@@ -164,4 +164,4 @@ def login_user(request):
     except Exception as e:
         print(e)
         messages.error(request, 'An error occurred. Please try again later.')
-        return redirect("/login")
+        return redirect("/login")   

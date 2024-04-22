@@ -33,7 +33,7 @@ urlpatterns = [
 
     #Observer Dashboard
     path('new-observation/', views.add_observation, name='new-observation'),
-    path('observations/', views.observations, name='observations'),
+    path('view-observations/', views.observations, name='observations'),
 
     #Error
     path('404/', TemplateView.as_view(template_name='404.html'), name='404'),

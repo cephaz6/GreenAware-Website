@@ -1,3 +1,4 @@
+from functools import wraps
 from django.shortcuts import redirect
 
 def observer_only(view_func):

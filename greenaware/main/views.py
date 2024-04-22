@@ -3,13 +3,14 @@ from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+from django.contrib import messages
 
 
 #import from other files
 from main.controllers.auth_controller import *
 from main.controllers.observation_controller import *
 from main.utils.authentication import get_user_dashboard_data
-from main.utils.utility import fetch_weather_notes
+from main.utils.utility import *
 from main.utils.custom_decorators import observer_only
 
 
@@ -74,7 +75,6 @@ def activate(request):
 
 
 #User Dashboard
-@csrf_exempt
 @login_required
 def user_dashboard(request):
     return render(request, 'dashboard/user.html', {'site_info': site_info})
@@ -109,13 +109,21 @@ def add_observation(request):
     elif request.method == 'POST':
         jwt_token = request.session.get('access_token')
         data = {key: request.POST.get(key) for key in request.POST}
-        return add_new_observation(data, jwt_token)
+        return add_new_observation(request, data, jwt_token)
 
-@csrf_exempt
+
 @login_required
 @observer_only
 def observations(request):
-    return render(request, 'dashboard/observer/observations.html', {'site_info': site_info})
+    observations = []  # Initialize with an empty list
+    try:
+        observations = fetch_observations(request)
+        if observations:
+            return render(request, 'dashboard/observer/observations.html', {'site_info': site_info, 'observations': observations})
+    except Exception as e:
+        messages.error(request, f'An error occurred: {e}')
+    # Render the template even if there was an error to show any relevant error message
+    return render(request, 'dashboard/observer/observations.html', {'site_info': site_info, 'observations': observations})
 
 
 #ERROR HANDLING ROUTE 

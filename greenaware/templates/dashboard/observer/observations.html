@@ -1,0 +1,110 @@
+{% extends 'includes/base.html' %} {% block content %} {% load static %}
+
+<div
+  class="block-feature-twelve position-relative pt-150 lg-pt-80 pb-180 lg-pb-80"
+>
+  <div class="container">
+    <div class="row gx-xl-5">
+      {% include 'components/base/user-pane.html' %}
+    </div>
+  </div>
+  <img
+    src="{% static 'assets/images/lazy.svg' %}"
+    data-src="{% static 'assets/images/shape/shape_45.svg' %}"
+    alt=""
+    class="lazy-img shapes shape_01"
+  />
+
+  <div class="team-details light-bg border-top pt-20 lg-pt-80">
+    <div class="container">
+      <div class="bg-wrapper">
+        <div class="row">
+          <div class="col-12">
+            <div
+              class="member-img m-auto p-5 justify-content-center text-center"
+            >
+              <h3>My Observations</h3>
+              <table
+                class="table table-responsive table-striped table-hover p-3"
+              >
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">W3W Address</th>
+                    <th scope="col">TimeZone</th>
+                    <th scope="col">Temp(Land)</th>
+                    <th scope="col">Temp(Sea)</th>
+                    <th scope="col">Humidity</th>
+                    <th scope="col">Wind Speed</th>
+                    <th scope="col">Wind Dir</th>
+
+                    <th scope="col"><b>Actions</b></th>
+                  </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                  {% for observation in observations %}
+                  <tr>
+                    <td>{{ observation.id }}</td>
+                    <td>{{ observation.date }}</td>
+                    <td>{{ observation.time }}</td>
+                    <td>{{ observation.city_name }}</td>
+
+                    <td>
+                      <a
+                        href="https://what3words.com/{{ observation.w3w_address }}"
+                      >
+                        {{ observation.w3w_address }}</a
+                      >
+                    </td>
+                    <td>{{ observation.timezone_offset }}</td>
+                    <td>
+                      {{ observation.temperature_land_surface }}
+                      <small> &deg;C</small>
+                    </td>
+                    <td>
+                      {{ observation.temperature_sea_surface }}
+                      <small> &deg;C</small>
+                    </td>
+                    <td>{{ observation.humidity }} <small>kg</small></td>
+                    <td>{{ observation.wind_speed }} <small>km/h</small></td>
+                    <td>
+                      {{ observation.wind_direction }} <small>&deg;</small>
+                    </td>
+
+                    <td>
+                      <div class="d-flex">
+                        <a
+                          href="/edit-observation/{{observation.id}}"
+                          title="Edit observation"
+                        >
+                          <button class="btn btn-success">
+                            <i class="bi bi-pen"></i>
+                          </button>
+                        </a>
+                        <a
+                          href="/delete-observation/{{observation.id}}"
+                          title="Delete observation"
+                        >
+                          <button class="btn btn-danger">
+                            <i class="bi bi-trash"></i>
+                            <!-- Edit -->
+                          </button>
+                        </a>
+                      </div>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
