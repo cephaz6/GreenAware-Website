@@ -6,7 +6,7 @@
       <!-- /.checkout-toggle-area -->
       {% include 'authentication/form-response.html' %}
       <div class="row">
-        <div class="col-lg-7">
+        <div class="col-12">
           <form
             id="signupForm"
             action=""
@@ -15,7 +15,7 @@
             class="checkout-form"
           >
             {% csrf_token %}
-            <h2 class="main-title">Add A New Observation</h2>
+            <h2 class="main-title">Edit Observation</h2>
             <div class="row">
               <div class="col-12">
                 <input
@@ -25,8 +25,9 @@
                 />
                 <input
                   type="text"
-                  required
+                  readonly
                   name="w3w_address"
+                  value="{{ observation.0.w3w_address }}"
                   placeholder="W3W Address e.g River.Ocean.Lake"
                   class="single-input-wrapper"
                 />
@@ -36,6 +37,7 @@
                   <label for="date">When will this observation be?*</label>
                   <input
                     type="date"
+                    value="{{ observation.0.date }}"
                     name="date"
                     required
                     class="single-input-wrapper"
@@ -48,6 +50,7 @@
                   <input
                     type="time"
                     name="time"
+                    value="{{ observation.0.time }}"
                     min="00:00:00"
                     max="23:59:59"
                     placeholder="HH:MM:SS"
@@ -61,6 +64,7 @@
                 <input
                   required
                   type="number"
+                  value="{{ observation.0.temperature_land_surface }}"
                   name="temperature_land_surface"
                   placeholder="Temperature Land Surface (deg celsius)*"
                   class="single-input-wrapper"
@@ -71,6 +75,7 @@
                   required
                   type="number"
                   name="temperature_sea_surface"
+                  value="{{ observation.0.temperature_sea_surface }}"
                   placeholder="Temperature Sea Surface (deg celsius)*"
                   class="single-input-wrapper"
                 />
@@ -80,6 +85,7 @@
                   required
                   type="number"
                   name="humidity"
+                  value="{{ observation.0.humidity }}"
                   placeholder="Humidity*"
                   class="single-input-wrapper"
                 />
@@ -89,6 +95,7 @@
                   required
                   type="number"
                   name="wind_speed"
+                  value="{{ observation.0.wind_speed }}"
                   placeholder="Wind Speed*"
                   class="single-input-wrapper"
                 />
@@ -98,6 +105,7 @@
                   required
                   type="number"
                   name="wind_direction"
+                  value="{{ observation.0.wind_direction }}"
                   placeholder="Wind Direction*"
                   class="single-input-wrapper"
                 />
@@ -107,6 +115,7 @@
                   required
                   type="number"
                   name="precipitation"
+                  value="{{ observation.0.precipitation }}"
                   placeholder="Precipitation*"
                   class="single-input-wrapper"
                 />
@@ -117,6 +126,7 @@
                   type="number"
                   name="haze"
                   placeholder="Haze*"
+                  value="{{ observation.0.haze }}"
                   class="single-input-wrapper"
                 />
               </div>
@@ -124,6 +134,7 @@
                 <input
                   required
                   type="text"
+                  value="{{ observation.0.timezone_offset }}"
                   name="timezone_offset"
                   placeholder="Timezone (GMT+0)*"
                   class="single-input-wrapper"
@@ -132,7 +143,9 @@
 
               <div class="col-lg-6">
                 <select name="weather_id" class="theme-select-menu">
-                  <option selected disabled>Weather Note</option>
+                  <option selected disabled>
+                    {{observation.0.weather_description|title}}
+                  </option>
                   {% for weather_note in weather_notes %}
                   <option value="{{ weather_note.id }}">
                     {{ weather_note.main|title }} -
@@ -142,66 +155,11 @@
                 </select>
               </div>
             </div>
-            <button class="btn-ten tran3s w-100">Submit Observation</button>
+            <button class="btn-ten tran3s w-100">Update  Observation</button>
           </form>
           <!-- /.user-profile-data -->
         </div>
         <!-- /.col- -->
-
-        <div class="col-xxl-4 col-lg-5 ms-auto">
-          <div class="order-confirm-sheet md-mt-60">
-            <div class="card p-5 mt-30">
-              <form
-                action="/bulk-observations"
-                method="POST"
-                enctype="multipart/form-data"
-              >
-                {% csrf_token %}
-                <div class="order-review">
-                  <h3 class="main-title">
-                    Upload A Bulk Observation
-                    <i class="bi bi-filetype-json"></i>
-                  </h3>
-
-                  <hr />
-                  <div class="input-group mb-3 mt-30">
-                    <label class="input-group-text" for="inputGroupFile01">
-                      Upload
-                    </label>
-                    <input
-                      type="file"
-                      required
-                      name="json_file"
-                      accept=".json"
-                      class="form-control"
-                      id="inputGroupFile01"
-                    />
-                  </div>
-
-                  <p class="text-dark mt-30">
-                    <small>
-                      Please you can upload a <b>.JSON</b> that contain a
-                      correct structure of
-                      <b>Bulk Observation Summission</b> Check the
-                      <b><a href="">Guide</a></b>
-                      for instructions
-                    </small>
-                  </p>
-                  <div class="agreement-checkbox mb-20">
-                    <input type="checkbox" id="agreement" />
-                    <label for="agreement">Is Data Valid?*</label>
-                  </div>
-                  <!-- /.agreement-checkbox -->
-
-                  <button type="submit" class="btn-ten tran3s w-100">
-                    Add Bulk Observation
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-          <!-- /.order-confirm-sheet -->
-        </div>
       </div>
       <!-- /.row -->
 

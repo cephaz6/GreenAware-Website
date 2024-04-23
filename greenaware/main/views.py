@@ -112,6 +112,53 @@ def add_observation(request):
         return add_new_observation(request, data, jwt_token)
 
 
+#BULK OBSERVATION
+@csrf_exempt
+@login_required
+@observer_only
+def bulk_observations(request):
+    print(request.method)
+    if request.method == 'GET':
+        try:
+            # Get the uploaded JSON file
+            # json_file = request.FILES.get('json_file')
+            json_file = request.FILES['json_file']
+            
+            if json_file:
+                # Read the JSON data from the file
+                json_data = json_file.read().decode('utf-8')
+
+                # Print the JSON file data to the terminal
+                # print(json_data)
+
+                # Send the JSON data to the remote Flask endpoint
+                response = add_bulk_observation(json_data)
+
+                # Process the response as needed
+                if response.status_code == 201:
+                    message = 'JSON data uploaded successfully!'
+                    messages.success(request, message)
+                    return redirect('/view-observations')
+                else:
+                    message = 'Failed to upload JSON data to Flask endpoint.'
+                    messages.error(request, message)
+                    return redirect('/new-observation/')
+            else:
+                message = 'File unavailable'
+                messages.error(request, message)
+                return redirect('/new-observation/')
+        
+        except Exception as e:
+            error_message = 'An error occurred while processing the request: {}'.format(str(e))
+            print(e)
+            messages.success(request, error_message)
+            return redirect('/new-observation')
+
+    # Redirect to view-observations if the request method is not POST
+    messages.error(request, "Invalid Method")
+    return redirect('/new-observation/')
+
+#VIEW OBSERVATIONS (OBSERVER)
 @login_required
 @observer_only
 def observations(request):
@@ -124,6 +171,36 @@ def observations(request):
         messages.error(request, f'An error occurred: {e}')
     # Render the template even if there was an error to show any relevant error message
     return render(request, 'dashboard/observer/observations.html', {'site_info': site_info, 'observations': observations})
+
+#EDIT OBSERVATION
+@login_required
+@observer_only
+def edit_observation(request, observation_id):
+    jwt_token = request.session.get('access_token')
+
+    if request.method == 'GET':
+        try:
+            weather_notes = fetch_weather_notes()
+            observation = fetch_observation(request, observation_id, jwt_token)
+            if observation:
+                return render(request, 'dashboard/observer/edit-observation.html', {'site_info': site_info, 'observation': observation, 'weather_notes': weather_notes})
+            else:
+                messages.error(request, "Error Fetching Observation Data")
+                return redirect('/view-observations')
+        except Exception as e:
+            print(e)
+            messages.error(request, f"An error occurred: {e}")
+            return redirect('/view-observations')
+
+    elif request.method == 'POST':
+        try:
+            print(request.method)
+            update_observation(request, observation_id, jwt_token)
+            messages.success(request, "Observation updated successfully")
+        except Exception as e:
+            messages.error(request, f"Failed to update observation: {e}")
+        return redirect('/view-observations')
+
 
 
 #ERROR HANDLING ROUTE 
