@@ -1,4 +1,4 @@
-### **GreenAware Website 🍏💚💚 **
+## **GreenAware Website 🍏💚💚**
 
 ---
 
@@ -10,7 +10,7 @@ GreenAware is a UK-based charity, concerned with the climate changes caused by G
 
 ---
 
-#### **Features**
+### **Features**
 
 - **User Registration:** Allows users to register for accounts with email confirmation to ensure accurate data and future email communications.
 - **Observation Recording:** Enables observers to record observations through the website and store details such as date, time, coordinates, temperature, humidity, wind speed, wind direction, precipitation, haze, and notes securely.
@@ -20,7 +20,7 @@ GreenAware is a UK-based charity, concerned with the climate changes caused by G
 
 ---
 
-#### **Technologies**
+### **Technologies**
 
 - **Python:** Core programming language used for website development.
 - **Django:** Web development framework used for building the website with built-in security features.
@@ -30,9 +30,9 @@ GreenAware is a UK-based charity, concerned with the climate changes caused by G
 
 ---
 
-#### **Getting Started**
+### **Getting Started**
 
-##### **Prerequisites:**
+#### **Prerequisites:**
 
 1. **Python 3.x**
 2. **Django framework**
@@ -67,7 +67,7 @@ To set up the Greenaware website locally for development or testing purposes, fo
 
 ---
 
-#### **Usage**
+### **Usage**
 
 After setting up the website locally, you can access the website by navigating to `http://localhost:8000` in your web browser. Register for a new account, log in, and explore the various features and functionalities of the Greenaware website.
 
