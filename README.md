@@ -1,13 +1,12 @@
-### **Greenaware Website 🍏💚💚 **
+### **GreenAware Website 🍏💚💚 **
 
 ---
 
-Welcome to the Greenaware website repository!
-GreenAware is a UK-based charity, concerned with the climate changes caused by Global Warming. Greenaware focuses on data collection to enhance public awareness and support scientific research. Their mission is to empower citizen scientists and leverage collected data for predictive modeling initiatives that ultimately influence government policy. This public repository houses the codes and documentation for the Greenaware website, a platform designed to be at the forefront of these efforts. Scientists and/or trained personnels can register, contribute climate readings and observations related to their local regions, and also access valuable information and resources.
+Welcome to the GreenAware website repository!
+
+GreenAware is a UK-based charity, concerned with the climate changes caused by Global Warming. GreenAware focuses on data collection to enhance public awareness and support scientific research. Their mission is to empower citizen scientists and leverage collected data for predictive modeling initiatives that ultimately influence government policy. This public repository houses the codes and documentation for the Greenaware website, a platform designed to be at the forefront of these efforts. Scientists and/or trained personnels can register, contribute climate readings and observations related to their local regions, and also access valuable information and resources.
 
 # ☁️🌡️❄️🌨️☃️☃️⛄🏔️🧊⛈️🌦️🌧️☔☀️🌻🌞
-
----
 
 ---
 
@@ -33,7 +32,7 @@ GreenAware is a UK-based charity, concerned with the climate changes caused by G
 
 #### **Getting Started**
 
-#####**Prerequisites:**
+##### **Prerequisites:**
 
 1. **Python 3.x**
 2. **Django framework**
@@ -44,16 +43,16 @@ GreenAware is a UK-based charity, concerned with the climate changes caused by G
 To set up the Greenaware website locally for development or testing purposes, follow these steps:
 
 1. **Clone the Repository:**
+
    ```bash
    git clone https://github.com/cephaz6/GreenAware-Website.git
    ```
 
-````
-
 2. **Navigate to the Directory:**
+
    ```bash
    cd greenaware
-````
+   ```
 
 3. **Install Dependencies:**
 
