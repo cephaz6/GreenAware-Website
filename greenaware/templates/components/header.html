@@ -105,6 +105,7 @@
                   API
                 </a>
               </li>
+              {% if not user_data %}
               <li class="nav-item">
                 <a class="nav-link" href="../marketplace" role="button">
                   <i class="bi bi-bag"></i>
@@ -117,7 +118,7 @@
                   Pricing
                 </a>
               </li>
-              {% if not user_data %}
+
               <li class="nav-item">
                 <a class="nav-link" href="../about-us" role="button">
                   <i class="bi bi-cloud-drizzle"></i>
@@ -136,6 +137,7 @@
               </li>
               {% endif %}
               <li class="d-md-none ps-2 pe-2">
+                {% if not user_data %}
                 <a href="register" class="signup-btn-one icon-link w-100 mt-20">
                   <span class="flex-fill text-center">Signup</span>
                   <div
@@ -144,6 +146,7 @@
                     <i class="bi bi-arrow-right"></i>
                   </div>
                 </a>
+                {% endif %}
                 <ul class="style-none contact-info m0 pt-30">
                   <li class="d-flex align-items-center p0 mt-15">
                     <img
