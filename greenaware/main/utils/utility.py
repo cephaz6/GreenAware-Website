@@ -37,6 +37,26 @@ def register_api_observer(data, user_id):
         return JsonResponse({'error': str(e)}, status=500)
 
 
+#Updating Observer Information in API Database
+# def update_api_observer(data, user_id):
+#     try:
+
+#         # Define the URL of the remote Flask API endpoint for observer registration
+#         api_url = f"http://127.0.0.1:5000/update-observer/{user_id}"
+
+#         # Send a POST request to the API endpoint
+#         response = requests.post(api_url, json=data)
+
+#         # Check the response from the Flask API
+#         if response.status_code == 200:
+#             return JsonResponse({'message': '"Observer information updated successfully in the API"'}, status=200)
+#         else:
+#             return JsonResponse({'error': 'Failed to update observer information in the API'}, status=500)
+
+#     except Exception as e:
+#         return JsonResponse({'error': str(e)}, status=500)
+
+
 #GRAB WEATHER CONDITIONS FROM API DB
 def fetch_weather_notes():
     response = requests.get('http://127.0.0.1:5000/weather-notes')

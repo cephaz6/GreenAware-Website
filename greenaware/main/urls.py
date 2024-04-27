@@ -29,7 +29,8 @@ urlpatterns = [
     path('dashboard/', views.user_dashboard, name='user-dashboard'),
     path('subscriptions/', views.user_subscribe, name='user-subscribe'),
     path('checkout/', views.user_checkout, name='user-checkout'),
-    path('payment-history/', views.user_history, name='user-payhistory'),
+    path('update-profile/', views.user_update_profile, name='user-profile-update'),
+    path('payment-history/', views.user_history, name='user-pay-history'),
 
     #Observer Dashboard
     path('new-observation/', views.add_observation, name='new-observation'),

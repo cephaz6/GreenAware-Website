@@ -25,7 +25,7 @@ from django.conf import settings
 from datetime import datetime, timedelta
 
 #imports from other files
-from ..models import CustomUser
+from main.models import CustomUser
 from main.utils import  utility as utils
 # from main.utils import activate_account
 
@@ -92,7 +92,7 @@ def register_user(request):
     except Exception as e:
         print(e)
         messages.error(request, 'An error occurred. Please try again later.')
-        return redirect("/register")
+        # return redirect("/register")
 
 
 #Activate User

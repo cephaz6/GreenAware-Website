@@ -8,6 +8,7 @@ from django.contrib import messages
 
 #import from other files
 from main.controllers.auth_controller import *
+from main.controllers.user_controller import *
 from main.controllers.observation_controller import *
 from main.utils.authentication import get_user_dashboard_data
 from main.utils.utility import *
@@ -93,6 +94,14 @@ def user_checkout(request):
 def user_history(request):
     return render(request, 'dashboard/payment-history.html', {'site_info': site_info})
 
+@csrf_exempt
+@login_required
+def user_update_profile(request):
+    print(request.method)
+    if request.method == 'GET':
+        return render(request, 'dashboard/update-profile.html', {'site_info': site_info})
+    elif request.method == 'POST':
+        return update_profile(request)
 
 
 #Observer Views
@@ -113,50 +122,85 @@ def add_observation(request):
 
 
 #BULK OBSERVATION
+# @csrf_exempt
+# @login_required
+# @observer_only
+# def bulk_observations(request):
+#     print(request.method)
+#     if request.method == 'GET':
+#         try:
+#             # Get the uploaded JSON file
+#             # json_file = request.FILES.get('json_file')
+#             json_file = request.FILES['json_file']
+            
+#             if json_file:
+#                 # Read the JSON data from the file
+#                 json_data = json_file.read().decode('utf-8')
+
+#                 # Print the JSON file data to the terminal
+#                 # print(json_data)
+
+#                 # Send the JSON data to the remote Flask endpoint
+#                 response = add_bulk_observation(json_data)
+
+#                 # Process the response as needed
+#                 if response.status_code == 201:
+#                     message = 'JSON data uploaded successfully!'
+#                     messages.success(request, message)
+#                     return redirect('/view-observations')
+#                 else:
+#                     message = 'Failed to upload JSON data to Flask endpoint.'
+#                     messages.error(request, message)
+#                     return redirect('/new-observation/')
+#             else:
+#                 message = 'File unavailable'
+#                 messages.error(request, message)
+#                 return redirect('/new-observation/')
+        
+#         except Exception as e:
+#             error_message = 'An error occurred while processing the request: {}'.format(str(e))
+#             print(e)
+#             messages.success(request, error_message)
+#             return redirect('/new-observation')
+
+#     # Redirect to view-observations if the request method is not POST
+#     messages.error(request, "Invalid Method")
+#     return redirect('/new-observation/')
+
 @csrf_exempt
 @login_required
 @observer_only
 def bulk_observations(request):
-    print(request.method)
-    if request.method == 'GET':
+    if request.method == 'POST' and request.FILES.get('json_file'):
         try:
             # Get the uploaded JSON file
-            # json_file = request.FILES.get('json_file')
             json_file = request.FILES['json_file']
             
-            if json_file:
-                # Read the JSON data from the file
-                json_data = json_file.read().decode('utf-8')
+            # Read the JSON data from the file
+            json_data = json_file.read().decode('utf-8')
 
-                # Print the JSON file data to the terminal
-                # print(json_data)
+            # Process the JSON data
+            parsed_data = json.loads(json_data)
 
-                # Send the JSON data to the remote Flask endpoint
-                response = add_bulk_observation(json_data)
+            # Send the parsed data to the remote Flask endpoint as JSON
+            api_url = "http://127.0.0.1:5000/bulk-observations"  # Update with your endpoint URL
+            headers = {'Content-Type': 'application/json'}
+            response = requests.post(api_url, json=parsed_data, headers=headers)
 
-                # Process the response as needed
-                if response.status_code == 201:
-                    message = 'JSON data uploaded successfully!'
-                    messages.success(request, message)
-                    return redirect('/view-observations')
-                else:
-                    message = 'Failed to upload JSON data to Flask endpoint.'
-                    messages.error(request, message)
-                    return redirect('/new-observation/')
+            # Check the response status code
+            if response.status_code == 201:
+                message = 'JSON data uploaded successfully!'
+                return JsonResponse({'message': message}, status=201)
             else:
-                message = 'File unavailable'
-                messages.error(request, message)
-                return redirect('/new-observation/')
-        
-        except Exception as e:
-            error_message = 'An error occurred while processing the request: {}'.format(str(e))
-            print(e)
-            messages.success(request, error_message)
-            return redirect('/new-observation')
+                error_message = 'Failed to upload JSON data to Flask endpoint.'
+                return JsonResponse({'error': error_message}, status=500)
 
-    # Redirect to view-observations if the request method is not POST
-    messages.error(request, "Invalid Method")
-    return redirect('/new-observation/')
+        except Exception as e:
+            error_message = f'An error occurred: {str(e)}'
+            return JsonResponse({'error': error_message}, status=500)
+
+    else:
+        return JsonResponse({'error': 'No JSON file uploaded or method not allowed.'}, status=400)
 
 #VIEW OBSERVATIONS (OBSERVER)
 @login_required
