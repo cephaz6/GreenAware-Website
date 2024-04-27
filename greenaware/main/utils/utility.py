@@ -38,23 +38,29 @@ def register_api_observer(data, user_id):
 
 
 #Updating Observer Information in API Database
-# def update_api_observer(data, user_id):
-#     try:
+def update_api_password(user_id, new_password):
+    try:
+        # Fetch user information from your database or wherever it is stored
+        user_info = {
+            'user_id': user_id,
+            'new_password': new_password
+        }
 
-#         # Define the URL of the remote Flask API endpoint for observer registration
-#         api_url = f"http://127.0.0.1:5000/update-observer/{user_id}"
+        # API endpoint for updating user password
+        api_url = "http://127.0.0.1:5000/update-password"
 
-#         # Send a POST request to the API endpoint
-#         response = requests.post(api_url, json=data)
+        # Send a POST request to the API endpoint with user information
+        response = requests.post(api_url, json=user_info)
 
-#         # Check the response from the Flask API
-#         if response.status_code == 200:
-#             return JsonResponse({'message': '"Observer information updated successfully in the API"'}, status=200)
-#         else:
-#             return JsonResponse({'error': 'Failed to update observer information in the API'}, status=500)
+        # Check the response status code to ensure the operation was successful
+        if response.status_code == 200:
+            print("Password updated successfully in the API")
+        else:
+            print("Failed to update password in the API")
 
-#     except Exception as e:
-#         return JsonResponse({'error': str(e)}, status=500)
+    except Exception as e:
+        print("An error occurred while updating password in the API:", e)
+
 
 
 #GRAB WEATHER CONDITIONS FROM API DB

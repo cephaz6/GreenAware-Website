@@ -103,6 +103,11 @@ def user_update_profile(request):
     elif request.method == 'POST':
         return update_profile(request)
 
+@csrf_exempt
+@login_required
+def user_update_password(request):
+    return update_password(request)
+
 
 #Observer Views
 @csrf_exempt

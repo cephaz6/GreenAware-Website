@@ -36,6 +36,7 @@
                       name="user_id"
                       value="{{ user_data.user_id }}"
                     />
+
                     <div class="col-12 form-group mt-5">
                       <label>Last Name*</label>
                       <input
@@ -62,7 +63,12 @@
           </form>
         </div>
         <div class="col-lg-6 ms-auto">
-          <form action="" class="checkout-form">
+          <form
+            action="/update-password/"
+            method="POST"
+            enctype="application/json"
+            class="checkout-form"
+          >
             {% csrf_token %}
             <div class="order-confirm-sheet md-mt-60">
               <div class="order-review">
@@ -77,6 +83,8 @@
                       <label>Email*</label>
                       <input
                         type="email"
+                        readonly
+                        disabled
                         name="email_address"
                         class="form-control form-control-lg"
                         placeholder="chris@gmail.com"
@@ -88,9 +96,24 @@
                         type="password"
                         placeholder="Enter Password"
                         class="form-control form-control-lg"
-                        name="password"
+                        name="new_password"
                       />
                     </div>
+                    <div class="col-12 form-group mt-5">
+                      <label>Retype New Password*</label>
+                      <input
+                        type="password"
+                        placeholder="Retype Password"
+                        class="form-control form-control-lg"
+                        name="retype_new_password"
+                      />
+                    </div>
+                    <input
+                      type="hidden"
+                      name="user_id"
+                      value="{{ user_data.user_id }}"
+                    />
+                    <input type="hidden" name="_method" value="PUT" />
                     <div class="col-12">
                       <div
                         class="agreement-checkbox d-flex justify-content-between align-items-center"
