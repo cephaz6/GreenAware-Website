@@ -4,7 +4,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib import messages
-
+from django.http import HttpResponseServerError
+from django.conf import settings
 
 #import from other files
 from main.controllers.auth_controller import *
@@ -13,6 +14,7 @@ from main.controllers.observation_controller import *
 from main.utils.authentication import get_user_dashboard_data
 from main.utils.utility import *
 from main.utils.custom_decorators import observer_only
+import stripe
 
 
 #Define the SiteInformation File
@@ -87,8 +89,28 @@ def user_subscribe(request):
 @csrf_exempt
 @login_required
 def user_checkout(request):
-    plan = request.GET.get('plan')
-    return render(request, 'dashboard/checkout.html', {'site_info': site_info, 'plan':plan})
+    try:
+        plan = request.GET.get('plan')
+        if request.method == 'GET':
+            return render(request, 'dashboard/checkout.html', {'site_info': site_info, 'plan':plan})
+        elif request.method == 'POST':
+            return checkout(request, site_info)
+    except Exception as e:
+        return HttpResponseServerError("An error occurred: {}".format(str(e)))
+
+@csrf_exempt
+@login_required
+def pay(request, payment_intent_id):
+    try:
+        stripe.api_key = settings.STRIPE_TEST_SECRET_KEY
+        client_secret = stripe.PaymentIntent.retrieve(payment_intent_id)
+        if request.method == 'GET':
+            return render(request, 'dashboard/pay.html', {'site_info': site_info, 'stripe_public_key': settings.STRIPE_TEST_PUBLIC_KEY})
+        elif request.method == 'POST':
+            return make_payment(request, client_secret)
+    except Exception as e:
+        return HttpResponseServerError("An error occurred: {}".format(str(e)))
+
 
 @login_required
 def user_history(request):

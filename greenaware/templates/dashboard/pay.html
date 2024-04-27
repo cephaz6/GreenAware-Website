@@ -1,0 +1,106 @@
+{% extends 'includes/base.html' %} {% block content %} {% load static %}
+<script src="https://js.stripe.com/v3/"></script>
+<div class="block-feature-twelve position-relative pt-150 lg-pt-80 lg-pb-80">
+  <div class="checkout-section pt-50 light-bg lg-pt-200 pb-100 sm-pb-50">
+    <div class="container">
+      <!-- /.checkout-toggle-area -->
+      <form action="/pay/" method="POST" id="payment-form">
+        {% csrf_token %}
+        <div class="row">
+          {% include 'authentication/form-response.html' %}
+          <div class="col-lg-7">
+            <h2 class="main-title">
+              Hey {{ user_data.first_name }}, Provide Billing Details
+            </h2>
+            <div id="card-stripe">
+              <!-- Stripe Elements Placeholder -->
+            </div>
+            <button id="submit-button" type="submit">Pay Now</button>
+          </div>
+          <!-- /.col- -->
+          <div class="col-xxl-4 col-lg-5 ms-auto">
+            <div class="order-confirm-sheet md-mt-60">
+              <div class="order-review">
+                <div
+                  class="pricing-card-one d-flex flex-column w-100 text-center"
+                >
+                  <h2 class="fw-bold">{{ plan|title }}</h2>
+                  <div class="action-btn btn btn-warning text-center">
+                    <a href="" class="text-dark">
+                      <i class="bi bi-chevron-right"></i>
+                    </a>
+                  </div>
+                  <div
+                    class="mt-15 price-banner text-lg-start d-lg-flex justify-content-center align-items-center"
+                  >
+                    <div class="price mx-2">
+                      <h2>
+                        {% if plan.plan == 'professional' %} £ 119.99 {% else %}
+                        £ 499.99 {% endif %}
+                      </h2>
+                    </div>
+                  </div>
+                  <small class="text-muted">
+                    Monthly Subscription Charge
+                  </small>
+                </div>
+                <div class="agreement-checkbox">
+                  <input type="checkbox" id="agreement" />
+                  <label for="agreement"
+                    >I have read and agree to the website terms and
+                    conditions*</label
+                  >
+                </div>
+                <button type="submit" class="btn-ten tran3s w-100">
+                  Continue to Pay
+                </button>
+              </div>
+              <!-- /.order-review -->
+            </div>
+            <!-- /.order-confirm-sheet -->
+          </div>
+        </div>
+        <!-- /.row -->
+      </form>
+      <!-- /.checkout-form -->
+    </div>
+    <!-- /.container -->
+  </div>
+  <!-- /.checkout-section -->
+</div>
+
+{% endblock %}
+
+<script>
+  var stripe = Stripe("{{ stripe_public_key }}");
+  var elements = stripe.elements();
+  var clientSecret = "{{ client_secret }}";
+
+  document.addEventListener("DOMContentLoaded", function (event) {
+    var card = elements.create("card");
+    card.mount("#card-stripe");
+
+    var form = document.getElementById("payment-form");
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      stripe
+        .confirmCardPayment(clientSecret, {
+          payment_method: {
+            card: card,
+            billing_details: {
+              name: "{{ user_data.first_name }}",
+            },
+          },
+        })
+        .then(function (result) {
+          if (result.error) {
+            console.error(result.error);
+          } else {
+            console.log(result.paymentIntent);
+            // Redirect or show success message
+          }
+        });
+    });
+  });
+</script>

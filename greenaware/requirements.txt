@@ -3,3 +3,4 @@ bootstrap
 whitenoise
 python-dotenv
 PyJWT
+stripe

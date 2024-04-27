@@ -27,6 +27,8 @@ handler404 = 'main.views.custom_404_view'
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-y40wcddex+&#07s*n&630&m9@9dcw4(jyixoc7$p041pi^jf1o'
 JWT_KEY = os.getenv('JWT_KEY')
+STRIPE_TEST_SECRET_KEY = 'sk_test_51PAAkgB62Fd2AJK2psOGNh8BjHQmForfDPHjY9aBlwHyQ54bexNcZ2KYw9JPhN7KH799cIKslBVSfvx7VxHBo1lA00VAgCFWna'
+STRIPE_TEST_PUBLIC_KEY = 'pk_test_51PAAkgB62Fd2AJK2RwQ2dm16KEUG8yi6cCJ2FdppPBsnvUkSgngRYCa59Mtov13v8TJ0Gjt9n4PUeK7t3Aasyqm300nasleB74'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False

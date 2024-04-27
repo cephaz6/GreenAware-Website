@@ -29,6 +29,7 @@ urlpatterns = [
     path('dashboard/', views.user_dashboard, name='user-dashboard'),
     path('subscriptions/', views.user_subscribe, name='user-subscribe'),
     path('checkout/', views.user_checkout, name='user-checkout'),
+    path('pay/<str:payment_intent_id>', views.pay, name='pay'),
     path('update-profile/', views.user_update_profile, name='user-profile-update'),
     path('update-password/', views.user_update_password, name='user-password-update'),
     path('payment-history/', views.user_history, name='user-pay-history'),

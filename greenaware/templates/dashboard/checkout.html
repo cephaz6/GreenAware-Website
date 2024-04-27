@@ -4,8 +4,17 @@
   <div class="checkout-section pt-50 light-bg lg-pt-200 pb-100 sm-pb-50">
     <div class="container">
       <!-- /.checkout-toggle-area -->
-      <form action="#" class="checkout-form">
+      <form
+        action="/checkout/"
+        method="POST"
+        enctype="application/json"
+        class="checkout-form"
+        id="payment-form"
+      >
+        {% csrf_token %}
+        <input type="hidden" name="plan" value="{{ plan }}" />
         <div class="row">
+          {% include 'authentication/form-response.html' %}
           <div class="col-lg-7">
             <h2 class="main-title">
               Hey {{user_data.first_name}}, Provide Billing Details
@@ -19,6 +28,7 @@
                     value="{{user_data.first_name}}"
                     placeholder="First Name*"
                     class="single-input-wrapper"
+                    required
                   />
                 </div>
                 <div class="col-lg-6">
@@ -28,17 +38,20 @@
                     value="{{user_data.last_name}}"
                     placeholder="Last Name*"
                     class="single-input-wrapper"
+                    required
                   />
                 </div>
                 <div class="col-12">
                   <input
+                    name="address"
+                    required
                     type="text"
-                    placeholder="Company Name*"
+                    placeholder="Street Address*"
                     class="single-input-wrapper"
                   />
                 </div>
-                <div class="col-12">
-                  <select class="theme-select-menu">
+                <div class="col-lg-6">
+                  <select name="country" class="theme-select-menu">
                     <option value="">Country*</option>
                     <option value="AF">Afghanistan</option>
                     <option value="AX">&Aring;land Islands</option>
@@ -304,44 +317,20 @@
                     <option value="ZW">Zimbabwe</option>
                   </select>
                 </div>
-                <div class="col-12">
+
+                <div class="col-lg-6">
                   <input
                     type="text"
-                    placeholder="Street Address*"
-                    class="single-input-wrapper"
-                  />
-                </div>
-                <div class="col-lg-4">
-                  <input
-                    type="text"
+                    name="city"
                     placeholder="Town/City*"
                     class="single-input-wrapper"
                   />
                 </div>
-                <div class="col-lg-4">
+
+                <div class="col-12">
                   <input
                     type="text"
-                    placeholder="State*"
-                    class="single-input-wrapper"
-                  />
-                </div>
-                <div class="col-lg-4">
-                  <input
-                    type="text"
-                    placeholder="Zip Code*"
-                    class="single-input-wrapper"
-                  />
-                </div>
-                <div class="col-lg-6">
-                  <input
-                    type="email"
-                    placeholder="Email Address*"
-                    class="single-input-wrapper"
-                  />
-                </div>
-                <div class="col-lg-6">
-                  <input
-                    type="text"
+                    name="phone"
                     placeholder="Phone Number*"
                     class="single-input-wrapper"
                   />
@@ -357,7 +346,7 @@
             <div class="order-confirm-sheet md-mt-60">
               <div class="order-review">
                 <div
-                  class="pricing-card-one d-flex flex-column w-100 h-100 text-center"
+                  class="pricing-card-one d-flex flex-column w-100 text-center"
                 >
                   <h2 class="fw-bold">{{ plan|title }}</h2>
                   <div class="action-btn btn btn-warning text-center">
@@ -371,8 +360,8 @@
                   >
                     <div class="price mx-2">
                       <h2>
-                        {% if plan == 'professional' %} £ 119.99 {% else %} £
-                        499.99 {% endif %}
+                        {% if plan == 'professional' %} £ 49.99 {% else %} £
+                        99.99 {% endif %}
                       </h2>
                     </div>
                   </div>
@@ -388,7 +377,9 @@
                     conditions*</label
                   >
                 </div>
-                <button class="btn-ten tran3s w-100">Continue to Pay</button>
+                <button type="submit" class="btn-ten tran3s w-100">
+                  Continue to Pay
+                </button>
               </div>
               <!-- /.order-review -->
             </div>
@@ -405,3 +396,33 @@
 
   {% endblock %}
 </div>
+
+<!-- JavaScript for Stripe Elements and Form Submission -->
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+  var stripe = Stripe("{{ stripe_public_key }}");
+  var elements = stripe.elements();
+
+  // Create an instance of the card Element.
+  var card = elements.create("card");
+
+  // Add an instance of the card Element into the `card-element` div.
+  card.mount("#card-element");
+
+  // Handle form submission
+  var form = document.getElementById("payment-form");
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    stripe.createToken(card).then(function (result) {
+      if (result.error) {
+        // Inform the user if there was an error.
+        var errorElement = document.getElementById("card-errors");
+        errorElement.textContent = result.error.message;
+      } else {
+        // Send the token to your server.
+        stripeTokenHandler(result.token);
+      }
+    });
+  });
+</script>
