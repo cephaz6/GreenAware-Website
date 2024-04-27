@@ -24,7 +24,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     email = models.EmailField(unique=True)
-    subscription_package = models.CharField(max_length=100, null=True, blank=True)
+    subscription_package = models.CharField(max_length=100, default='basic')
     user_role = models.CharField(max_length=20, default='user')
     is_active = models.BooleanField(default=True)
     is_verified = models.BooleanField(default=False)

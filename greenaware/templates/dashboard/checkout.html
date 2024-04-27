@@ -356,99 +356,31 @@
           <div class="col-xxl-4 col-lg-5 ms-auto">
             <div class="order-confirm-sheet md-mt-60">
               <div class="order-review">
-                <table class="product-review">
-                  <tbody>
-                    <tr>
-                      <th>
-                        <span>The First Waves</span>
-                      </th>
-                      <td><span>$23.99</span></td>
-                    </tr>
-                    <tr>
-                      <th>
-                        <span>Subtotal</span>
-                      </th>
-                      <td><span>$23.99</span></td>
-                    </tr>
-                    <tr>
-                      <th>
-                        <span>Shipping</span>
-                      </th>
-                      <td><span>$5.00</span></td>
-                    </tr>
-                  </tbody>
-                  <tfoot>
-                    <tr>
-                      <th><span>Total</span></th>
-                      <td><span>$28.99</span></td>
-                    </tr>
-                  </tfoot>
-                </table>
-                <!-- /.product-review -->
-                <div class="payment-option">
-                  <ul class="payment-list style-none">
-                    <li>
-                      <input
-                        type="radio"
-                        name="paymenttype"
-                        value="directbank"
-                        checked="checked"
-                        class="payment-radio-button"
-                      />
-                      <label>Direct Bank Transfer</label>
-                      <p>
-                        Make your payment directly into our account. Plase use
-                        your Order ID as payment reference.
-                      </p>
-                    </li>
-                    <li>
-                      <input
-                        type="radio"
-                        name="paymenttype"
-                        value="paypal"
-                        class="payment-radio-button"
-                      />
-                      <label>PayPal</label>
-                    </li>
-                    <li>
-                      <input
-                        type="radio"
-                        name="paymenttype"
-                        value="creditCard"
-                        id="credit-card"
-                        class="payment-radio-button"
-                      />
-                      <label>Credit Card</label>
-                    </li>
-                    <li class="credit-card-form">
-                      <div class="row">
-                        <div class="col-12">
-                          <h6>Card number</h6>
-                          <input type="text" />
-                        </div>
-                        <div class="col-8">
-                          <h6>Expiry date</h6>
-                          <div class="d-flex align-items-center">
-                            <input type="tel" placeholder="MM" />
-                            <span>/</span>
-                            <input type="tel" placeholder="YY" />
-                          </div>
-                        </div>
-                        <div class="col-4 ml-auto">
-                          <h6>CVV</h6>
-                          <input type="text" />
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                  <!-- /.payment-list -->
+                <div
+                  class="pricing-card-one d-flex flex-column w-100 h-100 text-center"
+                >
+                  <h2 class="fw-bold">{{ plan|title }}</h2>
+                  <div class="action-btn btn btn-warning text-center">
+                    <a href="" class="text-dark">
+                      <i class="bi bi-chevron-right"></i>
+                    </a>
+                  </div>
+
+                  <div
+                    class="mt-15 price-banner text-lg-start d-lg-flex justify-content-center align-items-center"
+                  >
+                    <div class="price mx-2">
+                      <h2>
+                        {% if plan == 'professional' %} £ 119.99 {% else %} £
+                        499.99 {% endif %}
+                      </h2>
+                    </div>
+                  </div>
+                  <small class="text-muted">
+                    Monthly Subscription Charge
+                  </small>
                 </div>
-                <!-- /.payment-option -->
-                <p class="policy-text">
-                  Your personal data will be use for your order, support your
-                  experience through this website & for other purpose described
-                  in our privacy policy
-                </p>
+
                 <div class="agreement-checkbox">
                   <input type="checkbox" id="agreement" />
                   <label for="agreement"
@@ -456,9 +388,7 @@
                     conditions*</label
                   >
                 </div>
-                <!-- /.agreement-checkbox -->
-
-                <button class="btn-ten tran3s w-100">Place Order</button>
+                <button class="btn-ten tran3s w-100">Continue to Pay</button>
               </div>
               <!-- /.order-review -->
             </div>

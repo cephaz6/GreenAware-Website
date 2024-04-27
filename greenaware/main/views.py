@@ -88,7 +88,7 @@ def user_subscribe(request):
 @login_required
 def user_checkout(request):
     plan = request.GET.get('plan')
-    return render(request, 'dashboard/checkout.html', {'site_info': site_info})
+    return render(request, 'dashboard/checkout.html', {'site_info': site_info, 'plan':plan})
 
 @login_required
 def user_history(request):
