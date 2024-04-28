@@ -14,6 +14,7 @@ from main.controllers.observation_controller import *
 from main.utils.authentication import get_user_dashboard_data
 from main.utils.utility import *
 from main.utils.custom_decorators import observer_only
+from main.models import *
 import stripe
 
 
@@ -110,6 +111,30 @@ def pay(request, payment_intent_id):
             return make_payment(request, client_secret)
     except Exception as e:
         return HttpResponseServerError("An error occurred: {}".format(str(e)))
+
+
+@login_required
+def user_services(request):
+    if request.method == 'GET':
+        try:
+            user = request.user
+            api_keys = ApiKey.objects.filter(user=user)
+            if api_keys:
+                return render(request, 'dashboard/my-services.html', {'site_info': site_info, 'api_keys': api_keys})
+            else:
+                messages.error(request, "You do not have any active API KEY, Generate One Now!!!!")
+                return render(request, 'dashboard/my-services.html', {'site_info': site_info, 'api_keys': api_keys})
+        except Exception as e:
+            messages.error(request, f"An error occurred: {e}")
+            return redirect('/dashboard')
+
+
+
+@csrf_exempt
+@login_required
+def generate_key(request):
+    return generate_api_key(request)
+
 
 
 @login_required

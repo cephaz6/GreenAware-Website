@@ -6,11 +6,11 @@ from main.utils.utility import *
 from django.contrib.auth.hashers import make_password
 
 from django.conf import settings
-import jwt
-import stripe
+import jwt, stripe, secrets
 
 #imports from other files
-from ..models import CustomUser
+from main.models import CustomUser, ApiKey
+from main.utils.authentication import get_user_dashboard_data
 
 #Update User Information
 @csrf_exempt
@@ -115,7 +115,7 @@ def checkout(request, site_info):
         return redirect(payment_url)
     except Exception as e:
         return render(request, 'error.html', {'error': str(e)})
-        
+
 # @csrf_exempt
 # def checkout(request, site_info):
 #     try:
@@ -167,3 +167,40 @@ def make_payment(request, client_secret):
             return redirect('checkout')
 
     return render(request, 'pay.html', {'client_secret': client_secret, 'name': request.POST['name']})
+
+
+def generate_api_key(request):
+    if request.method == 'POST':
+        try:
+            user = request.user
+            subscription_package = user.subscription_package  
+            
+            # Define the quota based on the subscription package
+            if subscription_package == 'basic':
+                quota_allotted = 1000
+            elif subscription_package == 'professional':
+                quota_allotted = 100000
+            elif subscription_package == 'enterprise':
+                quota_allotted = 1000000
+            else:
+                return JsonResponse({'error': 'Invalid subscription package'}, status=400)
+
+            # Generate a unique API key
+            while True:
+                api_key = secrets.token_urlsafe(24)
+                api_key = api_key.replace("-", "").lower()
+                if not ApiKey.objects.filter(api_key=api_key).exists():
+                    break
+
+            # Save the API key in the database
+            ApiKey.objects.create(user=user, api_key=api_key, subscription_package=subscription_package, quota_allotted=quota_allotted)
+
+            # Redirect to the dashboard on success
+            messages.success(request, 'API Key Generated Successfully')
+            return redirect('my-services/')
+
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=500)
+
+    else:
+        return JsonResponse({'error': 'Method not allowed'}, status=405)

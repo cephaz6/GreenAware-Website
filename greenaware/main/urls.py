@@ -33,6 +33,8 @@ urlpatterns = [
     path('update-profile/', views.user_update_profile, name='user-profile-update'),
     path('update-password/', views.user_update_password, name='user-password-update'),
     path('payment-history/', views.user_history, name='user-pay-history'),
+    path('my-services/', views.user_services, name='user-services'),
+    path('generate-api-key/', views.generate_key, name='generate-key'),
 
     #Observer Dashboard
     path('new-observation/', views.add_observation, name='new-observation'),

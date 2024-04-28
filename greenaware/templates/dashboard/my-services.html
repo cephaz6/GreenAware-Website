@@ -1,0 +1,149 @@
+{% extends 'includes/base.html' %} {% block content %} {% load static %}
+
+<div
+  class="block-feature-twelve position-relative pt-150 lg-pt-80 pb-180 lg-pb-20"
+>
+  <div class="container"></div>
+  <img
+    src="{% static 'assets/images/lazy.svg' %}"
+    data-src="{% static 'assets/images/shape/shape_45.svg' %}"
+    alt=""
+    class="lazy-img shapes shape_01"
+  />
+
+  <div class="team-details light-bg border-top pt-10 lg-pt-40">
+    <div class="container">
+      <div class="bg-wrapper">
+        <div class="row">
+          <div class="col-12">
+            <div
+              class="member-img m-auto p-5 justify-content-center text-center"
+            >
+              <h3>API KEYS MANAGEMENT</h3>
+              {% include 'authentication/form-response.html' %}
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div
+              class="pt-45 pb-45 ps-xl-4 ps-lg-0 ps-3 pe-xl-4 pe-lg-3 pe-3 border-right"
+            >
+              <h2 class="text-center name">Generate New Key</h2>
+
+              <p class="text-center">
+                <span class="badge text-bg-primary">
+                  Current Plan: {{ user_data.subscription_package|title }}
+                </span>
+              </p>
+              <div class="alert alert-primary">
+                <small>
+                  You can generate as many API keys as needed for your
+                  subscription. We accumulate the total load from all of them.
+                </small>
+              </div>
+              <hr />
+              <table class="w-100 lg-mt-20">
+                <tr>
+                  <form
+                    id="signupForm"
+                    action="/generate-api-key/"
+                    method="POST"
+                    enctype="application/json"
+                  >
+                    {% csrf_token %}
+                    <div class="row">
+                      <div class="col-12">
+                        <input
+                          class="form-control-lg w-100"
+                          type="text"
+                          name="api_key_name"
+                          placeholder="E.g My Weather API"
+                        />
+                        <input
+                          type="hidden"
+                          name="plan"
+                          value="{{ user_data.subscription_package }}"
+                        />
+                        <button class="btn-one w-100 tran3s d-block mt-20">
+                          Generate Key Now
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <div
+              class="member-img m-auto p-5 justify-content-center text-center"
+            >
+              <h3>Active Keys</h3>
+              <table class="table p-3">
+                <thead>
+                  <tr class="text-sm font-satoshi fw-500">
+                    <th width="60%" scope="col">Key</th>
+                    <th width="20%" scope="col">Plan</th>
+                    <th width="10%" scope="col">Quota</th>
+                    <th width="10%" scope="col">Status</th>
+                  </tr>
+                </thead>
+                <style>
+                  #copyButton {
+                    cursor: pointer;
+                    background: #f1bb3a;
+                  }
+
+                  #copyTarget {
+                    border-left: none;
+                  }
+
+                  .copied {
+                    opacity: 1;
+                    position: absolute;
+                    left: 55px;
+                  }
+                </style>
+                <tbody class="table-group-divider">
+                  {% for apikey in api_keys %}
+                  <tr>
+                    <td>
+                      <div class="input-group">
+                        <span
+                          id="copyButton"
+                          class="input-group-addon btn"
+                          title="Click to copy"
+                        >
+                          <i class="bi bi-clipboard" aria-hidden="true"></i>
+                        </span>
+                        <input
+                          style="font-weight: 500"
+                          type="text"
+                          id="copyTarget"
+                          class="form-control"
+                          value="{{ apikey.api_key }}"
+                        />
+                      </div>
+                    </td>
+                    <td>{{ apikey.subscription_package|title }}</td>
+                    <td>{{ apikey.quota_allotted }}</td>
+                    <td>
+                      {% if apikey.is_active == 1 %}
+                      <span class="text-success">Active</span>
+                      {% else %}
+                      <span class="text-danger">Blocked</span>
+                      {% endif %}
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
