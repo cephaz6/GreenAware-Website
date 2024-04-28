@@ -129,12 +129,10 @@ def user_services(request):
             return redirect('/dashboard')
 
 
-
 @csrf_exempt
 @login_required
 def generate_key(request):
     return generate_api_key(request)
-
 
 
 @login_required
@@ -297,6 +295,16 @@ def edit_observation(request, observation_id):
             messages.error(request, f"Failed to update observation: {e}")
         return redirect('/view-observations')
 
+
+
+#SYSTEM
+# @csrf_exempt
+def fetch_api_keys(request):
+    return fetch_all_api_keys(request)
+
+@csrf_exempt
+def register_call(request):
+    return register_api_call(request)
 
 
 #ERROR HANDLING ROUTE 

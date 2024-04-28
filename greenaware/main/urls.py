@@ -43,6 +43,11 @@ urlpatterns = [
     path('edit-observation/<int:observation_id>/', views.edit_observation, name='edit_observation'),
     # path('delete-observation/<int:observation_id>/', views.delete_observation, name='delete_observation'),
 
+
+    #system Endpoints
+    path('fetch-api-keys/', views.fetch_api_keys, name='fetch-api-keys'),
+    path('register-api-call/', views.register_call, name='register_api_call'),
+    
     #Error
     path('404/', TemplateView.as_view(template_name='404.html'), name='404'),
     path('unauthorized/', views.error_401, name='401'),

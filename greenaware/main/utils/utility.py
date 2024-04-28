@@ -1,5 +1,5 @@
 import random, string, requests
-from ..models import CustomUser
+from ..models import CustomUser, ApiKey
 from django.http import JsonResponse, HttpResponseBadRequest, HttpResponseServerError
 
 
@@ -71,3 +71,52 @@ def fetch_weather_notes():
     else:
         return None
 
+
+#GRAB ALL API KEYS FROM DB
+def fetch_all_api_keys(request):
+    try:
+        # Fetch all active API keys from the database
+        api_keys = ApiKey.objects.filter(is_active=1)
+        
+        # Prepare the data in JSON format
+        api_keys_data = [
+            {
+                'user_id': api_key.user_id,
+                'api_key': api_key.api_key,
+                'calls': api_key.calls,
+                'quota_allotted': api_key.quota_allotted
+            }
+            for api_key in api_keys
+        ]
+        
+        # Return the JSON response
+        return JsonResponse({'api_keys': api_keys_data}, status=200)
+    
+    except Exception as e:
+        # Handle exceptions
+        return JsonResponse({'error': str(e)}, status=500)
+
+
+#REGISTER OR LOG EVERY API CALL - (API CALL LISTENER)
+def register_api_call(request):
+    try:
+        # Extract API key and user ID from the request
+        api_key = request.POST.get('api_key')
+        user_id = request.POST.get('user_id')
+        print(api_key, user_id)
+
+        # Query the APIKey table for the specified API key and user ID
+        api_key_obj = ApiKey.objects.filter(api_key=api_key, user=user_id).first()
+
+        if api_key_obj:
+            # Increment the call count by 1
+            api_key_obj.calls += 1
+            api_key_obj.save()
+
+            return JsonResponse({'success': True, 'message': 'API call registered successfully.'})
+        else:
+            return JsonResponse({'success': False, 'message': 'Invalid API key or user ID.'}, status=400)
+
+    except Exception as e:
+        print(e)
+        return JsonResponse({'success': False, 'message': f'An error occurred: {str(e)}'}, status=500)

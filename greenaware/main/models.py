@@ -33,11 +33,11 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     objects = CustomUserManager()
 
-    USERNAME_FIELD = 'user_id'
+    USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
 
     def __str__(self):
-        return self.user_id
+        return self.email
 
 
 class ApiKey(models.Model):
