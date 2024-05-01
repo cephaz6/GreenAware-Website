@@ -45,11 +45,15 @@
             aria-controls="collapseOne"
           >
             <span style="font-size: 24px">
-              {% if user_data.user_role == 'observer' %} Subscription {% else %}
-              Subscription {% endif %}
+              {% if user_data.user_role == 'user' %} Subscription {% else %}
+              Observations {% endif %}
             </span>
             <br />
-            <small><b>({{ user_data.subscription_package|title }})</b></small>
+            <small>
+              {% if user_data.user_role == 'user' %}
+              <b>({{ user_data.subscription_package|title }})</b>
+              {% endif %}
+            </small>
           </button>
         </h5>
         <div
