@@ -82,11 +82,20 @@ TEMPLATES = [
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'  # Gmail SMTP server
 EMAIL_PORT = 465
-EMAIL_USE_TLS = True  # Enable TLS encryption
-EMAIL_USE_SSL = False  # Disable SSL encryption
+EMAIL_USE_TLS = False  # Enable TLS encryption
+EMAIL_USE_SSL = True  # Disable SSL encryption
 EMAIL_HOST_USER = 'webstore.perfume@gmail.com'  # Your Gmail email address
 EMAIL_HOST_PASSWORD = 'lnlzzizbarytqfnz'  # Your Gmail password or app password
 DEFAULT_FROM_EMAIL = 'webstore.perfume@gmail.com'
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'mail.tindaxtech.com'  # Gmail SMTP server
+# EMAIL_PORT = 465
+# EMAIL_USE_TLS = True  # Enable TLS encryption
+# EMAIL_USE_SSL = False  # Disable SSL encryption
+# EMAIL_HOST_USER = 'info@tindaxtech.com'  # Your Gmail email address
+# EMAIL_HOST_PASSWORD = '#U6+#I}z#6RC'  # Your Gmail password or app password
+# DEFAULT_FROM_EMAIL = 'info@tindaxtech.com'
 
 WSGI_APPLICATION = 'greenaware.wsgi.application'
 

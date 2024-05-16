@@ -3,18 +3,85 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Activate Your Account</title>
+    <title>GreenAware | Email Verification</title>
+    <style>
+      /* Styles for the email content */
+      body {
+        font-family: "Montserrat", sans-serif;
+        background-color: #f4f4f4;
+        padding: 20px;
+      }
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        color: #333333;
+      }
+      p {
+        color: #666666;
+        margin-bottom: 20px;
+      }
+      /* Styles for the logo */
+      .logo {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .logo img {
+        max-width: 200px;
+      }
+      /* Styles for the button */
+      .button {
+        text-align: center;
+        margin-top: 30px;
+      }
+      .button a {
+        display: inline-block;
+        background-color: #1f5907;
+        color: #ffffff;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+      .button a:hover {
+        background-color: #218f02;
+      }
+    </style>
   </head>
   <body>
-    <h2>Activate Your Account</h2>
-    <p>
-      Welcome to our platform! Please click the link below to activate your
-      account:
-    </p>
-    <p><a href="{{ activation_link }}">Activate Now</a></p>
-    <p>
-      If you have any questions, feel free to contact us at support@example.com.
-    </p>
-    <p>Thank you!</p>
+    <div class="container">
+      <div class="logo">
+        <img src="https://tindaxtech.com/greenaware-logo.png" alt="Logo" />
+      </div>
+      <h1>Welcome to GreenAware!</h1>
+      <p>Dear {{ user.first_name }},,</p>
+      <p>
+        We are thrilled to welcome you to our website! Get ready to explore
+        exciting features, discover new content, and connect with our community.
+      </p>
+      <br />
+      <hr />
+      <br />
+      <p>Please verify your account by clicking on the following link:</p>
+      <div class="button">
+        <a href="{{ verification_link }}">Verify Account</a>
+      </div>
+
+      <p>
+        If the above link doesn't work, you can copy and paste the following URL
+        into your browser:
+      </p>
+      <p>{{ verification_link }}</p>
+
+      <br />
+      <hr />
+      <br />
+      <p>Thank you!</p>
+    </div>
   </body>
 </html>

@@ -30,6 +30,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     is_verified = models.BooleanField(default=False)
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)
+    email_verification_token = models.CharField(max_length=100, blank=True, null=True)
 
     objects = CustomUserManager()
 

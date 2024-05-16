@@ -47,18 +47,13 @@ def add_bulk_observation(json_data):
 
 
 #GRAB OBSERVER'S OBSERVATIOINS FROM API DB
-def fetch_observations(request):
+def fetch_observations(request, user):
     try:
         # URL of the Flask app endpoint that provides observation data
-        api_url = "http://127.0.0.1:5000/get-observations"
-
-        # JWT token obtained from Django session
+        api_url = f"http://127.0.0.1:5000/get-observations/{user}"
         jwt_token = request.session.get('access_token')
-
-        # Headers with JWT token for authorization
         headers = {'Authorization': f'Bearer {jwt_token}'}
 
-        # Make a GET request to the Flask API endpoint with JWT token in headers
         response = requests.get(api_url, headers=headers)
 
         if response.status_code == 200:

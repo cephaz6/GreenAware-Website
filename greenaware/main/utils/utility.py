@@ -1,7 +1,16 @@
-import random, string, requests
+import random, string, requests, secrets
 from ..models import CustomUser, ApiKey
 from django.http import JsonResponse, HttpResponseBadRequest, HttpResponseServerError
 
+
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+from django.contrib.auth import get_user_model, login
+from django.contrib import messages
+from django.shortcuts import render, redirect
+
+User = get_user_model()
 
 #Unique UserID Generator
 def generate_unique_user_id(length=10):
@@ -120,3 +129,61 @@ def register_api_call(request):
     except Exception as e:
         print(e)
         return JsonResponse({'success': False, 'message': f'An error occurred: {str(e)}'}, status=500)
+
+#VERIFY EMAIL
+def activate_account(user, email):
+    try:
+        # Generate a random verification token
+        token = secrets.token_urlsafe(32).islower()
+
+        # Save the token to the user's record
+        user.email_verification_token = token
+        user.save()
+
+        # Generate verification link with token
+        verification_link = f"http://127.0.0.1:8000/verify/{token}/"
+
+        # Render email template
+        email_subject = "Verify Your Account"
+        email_html_message = render_to_string('mail/activation_email.html', {'verification_link': verification_link, 'user': user})
+        email_plaintext_message = strip_tags(email_html_message)
+
+        # Send the email
+        msg = EmailMultiAlternatives(
+            email_subject,
+            email_plaintext_message,
+            'webstore.perfume@gmail.com',
+            [email]
+        )
+        msg.attach_alternative(email_html_message, "text/html")
+        msg.send()
+    except Exception as e:
+        # Handle exceptions
+        print(f"An error occurred: {e}")
+
+
+def verify_email(request, token):
+    try:
+        # Find the user with the provided token
+        user = User.objects.get(email_verification_token=token)
+    except User.DoesNotExist:
+        # Handle the case where the user with the provided token doesn't exist
+        messages.error(request, "Invalid verification token.")
+        return redirect('/login')
+
+    try:
+        # Mark the user's email as verified
+        user.is_verified = True
+        user.save()
+
+        # Log in the user
+        login(request, user)
+
+        # Redirect to a success page or display a success message
+        messages.success(request, "Your email has been successfully verified.")
+        return redirect('/dashboard')
+    except Exception as e:
+        print(e)
+        # Handle other exceptions, such as database errors
+        messages.error(request, f"An error occurred: {e}")
+        return redirect('/login')

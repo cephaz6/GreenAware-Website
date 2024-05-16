@@ -73,9 +73,9 @@ def register(request):
 def login(request):
     return login_user(request)
 
-@csrf_exempt
-def activate(request):
-    return activate_account(request)
+
+def activate(request, token):
+    return verify_email(request, token)
 
 
 #User Dashboard
@@ -205,9 +205,10 @@ def bulk_observations(request):
 @login_required
 @observer_only
 def observations(request):
+    user = request.user.user_id
     observations = []  # Initialize with an empty list
     try:
-        observations = fetch_observations(request)
+        observations = fetch_observations(request, user)
         if observations:
             return render(request, 'dashboard/observer/observations.html', {'site_info': site_info, 'observations': observations})
     except Exception as e:

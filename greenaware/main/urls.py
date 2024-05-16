@@ -22,7 +22,7 @@ urlpatterns = [
     #Authentications
     path('register-user/', views.register, name='register'),
     path('login-user/', views.login, name='login'),
-    path('activate/<uidb64>/<token>/', views.activate, name='activate'),
+    path('verify/<str:token>/', views.activate, name='activate'),
     path('logout/', views.logout_user, name='logout'),
 
     #User Dashboard

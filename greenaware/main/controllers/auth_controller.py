@@ -31,6 +31,8 @@ from main.utils import  utility as utils
 
 User = get_user_model()
 
+
+
 @csrf_exempt
 def register_user(request):
     if request.method != 'POST':
@@ -70,13 +72,12 @@ def register_user(request):
             return redirect("/register")
 
 
-        # if user_role == "observer":
-        #     utils.register_api_observer(data, user_id)
+        if user_role == "observer":
+            utils.register_api_observer(data, user_id)
 
         user = CustomUser.objects.create_user(email=email, user_id=user_id, first_name=first_name, last_name=last_name, user_role=user_role, password=password)
         # Send activation email
-        activate_account(user, email)
-        # activate_account(user, email)
+        utils.activate_account(user, email)
 
         messages.success(request, 'User registered successfully.')
         return redirect("/login", {'user': user})
@@ -95,50 +96,6 @@ def register_user(request):
         print(e)
         messages.error(request, 'An error occurred. Please try again later.')
         return redirect("/register")
-
-
-#Activate User
-def activate_account(user, email):
-    try:
-        # Generate a unique activation token
-        activation_token = default_token_generator.make_token(user)
-
-        # Build the activation link
-        activation_link = reverse('activate', kwargs={'uidb64': urlsafe_base64_encode(force_bytes(user.pk)), 'token': activation_token})
-
-        print(activation_link)
-        # Send activation email
-        subject = 'Activate Your Account'
-        message = render_to_string('mail/activation_email.html', {'activation_link': activation_link})
-        send_mail(subject, message, 'webstore.perfume@gmail.com', [email])
-
-    except Exception as e:
-        # Handle any exceptions that might occur
-        print(e)
-        raise ImproperlyConfigured(f"Activation email could not be sent: {e}")
-
-# def activate_account(user, email):
-#     try:
-#         print(user)
-#         # Generate verification link
-#         verification_link = f"https://yourdomain.com/verify/{user.email}"  # Change this URL to your actual verification URL
-#         email_subject = "Verify Your Account"
-#         email_message = f"Hi {user.first_name},\n\nPlease verify your account by clicking on the following link:\n{verification_link}"
-
-#         send_mail(
-#             email_subject,
-#             email_message,
-#             'info@tindaxtech.com',  # Replace with your email address
-#             [email],
-#             fail_silently=False,
-#         )
-#     except ValidationError as e:
-#         # Handle validation errors
-#         print(f"Validation Error: {e}")
-#     except Exception as e:
-#         # Handle other exceptions
-#         print(f"An error occurred: {e}")
-
 
 
 
