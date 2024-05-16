@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, re_path
 from main import views
 from django.conf.urls import handler404
 from django.views.generic import TemplateView
@@ -38,8 +38,8 @@ urlpatterns = [
 
     #Observer Dashboard
     path('new-observation/', views.add_observation, name='new-observation'),
-    path('view-observations/', views.observations, name='observations'),
     path('bulk-observations/', views.bulk_observations, name='bulk_observations'),
+    path('view-observations/', views.observations, name='observations'),
     path('edit-observation/<int:observation_id>/', views.edit_observation, name='edit_observation'),
     # path('delete-observation/<int:observation_id>/', views.delete_observation, name='delete_observation'),
 
